@@ -35,7 +35,7 @@ This workshop guides you step-by-step through building a dual-track Security Ope
 graph TD
     subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
         A2["AWS Cloud Attack (CLI/SDK)"] --> C1["AWS CloudTrail Audit Logs"]
-        C1 --> C3["EventBridge Threat Patterns (<5s)"]
+        C1 --> C3["EventBridge Threat Patterns (sub-5s)"]
         GD["AWS GuardDuty ML Findings"] --> C3
         SH["AWS Security Hub (CIS Benchmark)"] --> C3
         C3 --> SF["Step Functions Workflow"]
@@ -48,7 +48,7 @@ graph TD
 
     subgraph ComparisonTrack["Dual-Ingestion & Detection Benchmark Engine"]
         S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
-        KIB -.-> BENCH["Detection Comparison Benchmark (detection-comparison.md)"]
+        KIB --> BENCH["Detection Comparison Benchmark (detection-comparison.md)"]
     end
 {{< /mermaid >}}
 
