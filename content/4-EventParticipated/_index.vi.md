@@ -6,41 +6,47 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-> Trong phần này, các bạn cần liệt kê và mô tả chi tiết các sự kiện (event) mà mình đã tham gia trong suốt quá trình thực tập hoặc làm việc. 
-> 
-> Mỗi sự kiện nên được trình bày theo định dạng Event 1, Event 2, Event 3…, kèm theo các thông tin:
-> * Tên sự kiện
-> * Thời gian tổ chức
-> * Địa điểm (nếu có)
-> * Vai trò của bạn trong sự kiện (người tham dự, hỗ trợ tổ chức, diễn giả, v.v.)
-> * Mô tả ngắn gọn nội dung và hoạt động chính trong sự kiện
-> * Kết quả hoặc giá trị đạt được (bài học, kỹ năng mới, đóng góp cho nhóm/dự án)
-> * Việc liệt kê này giúp thể hiện rõ sự tham gia thực tế của bạn, cũng như các kỹ năng mềm và kinh nghiệm bạn đã tích lũy qua từng sự kiện.
-
-
-Trong quá trình thực tập, em đã tham gia 2 events, với mỗi event là một trải nghiệm đáng nhớ với những kiến thức mới, hay và bổ ích, cùng với đó là nhứng món quà và những khoảnh khắc rất tuyệt vời.
+Trong quá trình thực tập, em đã tham gia 3 events. Mỗi event đều là một trải nghiệm đáng nhớ mang lại những kiến thức thực tiễn bổ ích, cơ hội kết nối với các chuyên gia trong ngành và nâng cao tư duy thiết kế hệ thống Cloud & AI.
 
 ### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+&emsp;**Tên sự kiện:** AWS FC Community Day
 
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
+&emsp;**Thời gian:** 09:00 ngày 15/06/2024
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+&emsp;**Địa điểm:** Tầng 26 & 36, Tòa nhà Bitexco Financial Tower, Số 02 Đường Hải Triều, Bến Nghé, Quận 1, TP. Hồ Chí Minh (online)
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+&emsp;**Vai trò trong sự kiện:** Người tham dự
 
+&emsp;**Mô tả nội dung:** Sự kiện tập trung chia sẻ chuyên sâu từ các chuyên gia doanh nghiệp về Agentic Platform cho Infrastructure, Voice AI Agent tiếng Việt, AWS DevOps Agent xử lý sự cố DDoS, Amazon Q Business tự động hóa quy trình HR và mô hình bảo mật Private VPC cho MCP Server.
 
+&emsp;**Kết quả đạt được:** Tiếp thu tư duy Human-in-the-loop trong vận hành Production critical, nắm vững cơ chế xây dựng Voice AI tiếng Việt (STT-LLM-TTS) và kỹ thuật bảo mật Zero Trust cho MCP Server.
+
+---
 
 ### [Event 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** GenAI-powered App-DB Modernization workshop
+&emsp;**Tên sự kiện:** AWS Study Tour & Cloud AI Journey
 
-&emsp;**Thời gian:** 09:00 ngày 13/08/2025
+&emsp;**Thời gian:** 09:00 ngày 20/07/2024
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+&emsp;**Địa điểm:** Tầng 26 & 36, Tòa nhà Bitexco Financial Tower, Số 02 Đường Hải Triều, Bến Nghé, Quận 1, TP. Hồ Chí Minh
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+&emsp;**Vai trò trong sự kiện:** Người tham dự
 
+&emsp;**Mô tả nội dung:** Chuyến tham quan văn phòng AWS dành cho sinh viên, lắng nghe định hướng thị trường tuyển dụng Cloud Computing từ các lãnh đạo AWS, phân tích sự khác biệt giữa Data Architecture tại trường học vs doanh nghiệp thực tế, rèn luyện kỹ năng Small Talk và định hình Mindset phát triển nghề nghiệp trong kỷ nguyên AI.
+
+&emsp;**Kết quả đạt được:** Hiểu rõ bức tranh tuyển dụng Cloud-First, xây dựng tư duy kiên trì (Consistency), chủ động học tập suốt đời (Lifelong learning) và rèn luyện kỹ năng giao tiếp chuyên nghiệp với cấp trên và đối tác.
+
+---
+
+### [Event 3](4.1-Event3/)
+&emsp;**Tên sự kiện:** Agentic AI Buildweek Hackathon
+
+&emsp;**Thời gian:** 08:00 ngày 10/08/2024 (Cuộc thi lập trình 24h)
+
+&emsp;**Địa điểm:** Tầng 26 & 36, Tòa nhà Bitexco Financial Tower, Số 02 Đường Hải Triều, Bến Nghé, Quận 1, TP. Hồ Chí Minh
+
+&emsp;**Vai trò trong sự kiện:** Người tham dự
+
+&emsp;**Mô tả nội dung:** Cuộc thi lập trình thực chiến kéo dài 24h xây dựng các ứng dụng AI Agent trên nền tảng AWS Bedrock. Sự kiện quy tụ các đội thi tài năng với nhiều dự án xuất sắc như KFC Conversational Ordering Agent, Platform phân tích đối thủ cạnh tranh, SA Architecture Generator, Hệ thống đếm đám đông real-time và Động cơ điều tra phòng chống rửa tiền (AML).
+
+&emsp;**Kết quả đạt được:** Nắm vững mô hình Multi-Agent (Supervisor - Sub-agents), kỹ năng quản trị phạm vi dự án (Scope Management) dưới áp lực thời gian, kinh nghiệm phối hợp nhóm và tích hợp các dịch vụ AWS Bedrock, Step Functions, Kinesis.

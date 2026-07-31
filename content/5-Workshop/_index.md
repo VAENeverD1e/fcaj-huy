@@ -32,7 +32,7 @@ The lab implements an AWS-native detect-decide-act loop paired with an empirical
 
 #### System Architecture Overview
 
-```mermaid
+{{< mermaid >}}
 graph TD
     subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
         A2["AWS Cloud Attack (CLI/SDK)"] --> C1["AWS CloudTrail Audit Logs"]
@@ -51,7 +51,7 @@ graph TD
         S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
         KIB -.-> BENCH["Detection Comparison Benchmark (detection-comparison.md)"]
     end
-```
+{{< /mermaid >}}
 
 ---
 

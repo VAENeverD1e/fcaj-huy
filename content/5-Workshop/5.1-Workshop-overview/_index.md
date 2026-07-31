@@ -31,7 +31,7 @@ This workshop guides you step-by-step through building a dual-track Security Ope
 
 #### High-Level System Architecture
 
-```mermaid
+{{< mermaid >}}
 graph TD
     subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
         A2["AWS Cloud Attack (CLI/SDK)"] --> C1["AWS CloudTrail Audit Logs"]
@@ -50,7 +50,7 @@ graph TD
         S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
         KIB -.-> BENCH["Detection Comparison Benchmark (detection-comparison.md)"]
     end
-```
+{{< /mermaid >}}
 
 ![SOC Detection Lab System Architecture](/images/5-Workshop/5.1-Workshop-overview/architecture_diagram.png)
 

@@ -32,7 +32,7 @@ Bài thực hành triển khai luồng phát hiện và ứng phó sự cố nat
 
 #### Sơ đồ Kiến trúc Hệ thống Tổng quan
 
-```mermaid
+{{< mermaid >}}
 graph TD
     subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
         A2["Tấn công AWS Cloud (CLI/SDK)"] --> C1["Log Audit AWS CloudTrail"]
@@ -51,7 +51,7 @@ graph TD
         S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
         KIB -.-> BENCH["Ma trận So sánh Phát hiện (detection-comparison.md)"]
     end
-```
+{{< /mermaid >}}
 
 ---
 

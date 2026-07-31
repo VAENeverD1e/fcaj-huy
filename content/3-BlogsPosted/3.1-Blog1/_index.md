@@ -1,31 +1,65 @@
 ---
 title: "Blog 1"
-date: 2024-01-01
+date: 2026-07-31
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# AMAZON EVENTBRIDGE — THE HEART OF EVENT-DRIVEN SECURITY ARCHITECTURE ON AWS
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+Amazon EventBridge is a **serverless event bus** service fully managed by AWS, enabling you to connect applications with each other through real-time events. In Security Detection & Response systems, EventBridge acts as the "heart" that orchestrates the entire automation pipeline.
 
-Key points to know:
+## How Does EventBridge Work?
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+When a user performs an action on AWS (e.g., creating a new IAM User, modifying an S3 Bucket policy), CloudTrail records that event. EventBridge continuously listens to these events and matches them against pre-defined **Event Rules**. If matched, EventBridge immediately triggers a Target — which can be a Lambda Function, SQS Queue, SNS Topic, and more.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+```
+CloudTrail API Call
+        │
+        ▼
+EventBridge Event Bus
+        │ (Pattern Matching)
+        ▼
+Event Rule Match
+        │
+        ▼
+Lambda Function (Target)
+```
 
-...Image...
+## Why Is EventBridge Ideal for Security Automation?
 
-...Link...
+**1. Near Real-time Detection**
+The latency from when an event occurs to when Lambda is triggered is typically just a few seconds — far faster than periodically polling CloudTrail logs from S3.
 
-...Guide...
+**2. Event Pattern Filtering**
+You can precisely define which events to capture using JSON pattern syntax. For example, only catching API Calls with `eventName` equal to `CreateUser` or `AttachUserPolicy`:
+
+```json
+{
+  "source": ["aws.iam"],
+  "detail-type": ["AWS API Call via CloudTrail"],
+  "detail": {
+    "eventName": ["CreateUser", "AttachUserPolicy", "CreateAccessKey"]
+  }
+}
+```
+
+**3. Multi-Region Support**
+One particularly important point: AWS emits global IAM and Console Sign-in events in the `us-east-1` region, regardless of where your actual resources reside. The solution is to create a separate Event Rule in `us-east-1` pointing to a Lambda Function in your primary region (e.g., `ap-southeast-2`).
+
+**4. Zero-Polling Architecture**
+Instead of scheduling periodic log checks (which consume DynamoDB RCU and Lambda invocations), EventBridge only triggers Lambda when events actually occur — saving significant costs.
+
+## Key Points to Remember
+
+* A single Event Rule can have multiple **Targets** (up to 5), e.g., calling Lambda while simultaneously pushing to SQS.
+* Enable a **Dead Letter Queue (DLQ)** for the Lambda Target to avoid losing events when Lambda fails.
+* EventBridge guarantees **at-least-once delivery** — Lambda may be invoked more than once for the same event, so ensure your handler is **idempotent**.
+* **Custom Event Pricing**: AWS charges **$1.00/million events** from the very first event — **there is no Free Tier for custom events**. However, **AWS Management Events** (including CloudTrail API calls) are ingested into the default event bus **completely free of charge** — this is exactly what our project uses. Note: EventBridge Scheduler has a separate free tier of 14 million invocations/month (a different feature).
+
+With EventBridge, you can build a completely serverless AWS threat detection system that responds instantly and requires no server management — this is the foundation of the **AWS-Native SOAR (Security Orchestration, Automation and Response)** model.
+
+**🔗 Further Reading:**
+- [Amazon EventBridge Documentation](https://docs.aws.amazon.com/eventbridge/latest/userguide/what-is-amazon-eventbridge.html)
+- [EventBridge Event Patterns](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html)

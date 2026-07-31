@@ -1,31 +1,47 @@
 ---
 title: "Blog 2"
-date: 2024-01-01
-weight: 1
+date: 2026-07-31
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+# AWS SOC DETECTION LAB — TỰ ĐỘNG HÓA PHÁT HIỆN MỐI ĐE DỌA & VẬN HÀNH PIPELINE TRÊN AWS
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+Trong môi trường Cloud Security, việc phát hiện sớm và phản ứng tức thì với các hành vi bất thường là yếu tố sống còn. Dự án **AWS SOC Detection Lab** được thiết kế như một hệ thống phát hiện sự cố bảo mật tự động, kết hợp với một **Operations Dashboard** giúp giám sát trực quan toàn bộ quá trình vận hành đó.
 
-Các điểm chính cần nắm:
+## Mục tiêu cốt lõi của dự án
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+Dự án tập trung giải quyết 2 bài toán chính:
+1. **Tự động hóa phát hiện mối đe dọa (Automation Threat Detection)**: Theo dõi các thao tác nguy hiểm trên tài khoản AWS và gửi cảnh báo ngay lập tức.
+2. **Giám sát sức khỏe Pipeline (Pipeline Observability)**: Cung cấp giao diện Dashboard đo lường độ tin cậy, hiệu năng và trạng thái hoạt động của chính hệ thống cảnh báo.
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+---
 
-...Hình ảnh...
+## Luồng hoạt động tổng quan
 
-...Link...
+Hệ thống vận hành theo mô hình Event-Driven hoàn toàn serverless:
+1. **Phát hiện**: Khi xuất hiện hành vi nhạy cảm (như mở public S3 Bucket, tạo IAM User bất thường, đổi policy), CloudTrail và GuardDuty sẽ ghi nhận.
+2. **Lọc & Kích hoạt**: EventBridge bắt sự kiện theo thời gian thực và kích hoạt ngay AWS Lambda.
+3. **Xử lý & Cảnh báo**: Lambda phân loại mức độ nghiêm trọng (`CRITICAL`, `HIGH`, `MEDIUM`), phát cảnh báo qua SNS Email và lưu thông số vào DynamoDB.
+4. **Trực quan hóa**: Operations Dashboard truy vấn dữ liệu để hiển thị bức tranh toàn cảnh về tình trạng hệ thống.
 
-...Hướng dẫn...
+---
+
+## Điểm đặc biệt của Operations Dashboard
+
+Khác với các công cụ SIEM thông thường (chỉ tập trung phân tích nội dung cảnh báo), **Operations Dashboard** trong dự án này đóng vai trò như một bảng điều khiển kỹ thuật (NOC/SOC Dashboard):
+
+* **Đo lường độ tin cậy**: Hiển thị tổng số sự kiện, tỷ lệ thành công (`SUCCESS`) và lỗi (`ERROR`).
+* **Theo dõi hiệu năng**: Thống kê thời gian xử lý (latency) của Lambda và SNS.
+* **Tối ưu chi phí**: Tích hợp cơ chế Caching và theo dõi định mức AWS Free Tier để đảm bảo hệ thống vận hành tối ưu nhất.
+
+---
+
+## Kết luận
+
+**AWS SOC Detection Lab** là sự kết hợp hài hòa giữa **Bảo mật (Security)**, **Tự động hóa (Automation)** và **Vận hành (Operations)**. Hệ thống mang lại cái nhìn toàn diện giúp đội ngũ kĩ thuật vừa đảm bảo an toàn cho hạ tầng Cloud, vừa nắm rõ trạng thái hoạt động của hệ thống giám sát.
+
+**🔗 Tham khảo thêm:**
+- [Soc Detection Lab](https://github.com/VAENeverD1e/soc-detection-lab)
+- [Operations Dashboard](https://github.com/KoangWy/ops-dashboard)

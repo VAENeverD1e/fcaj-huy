@@ -34,7 +34,7 @@ Vì mỗi lệnh API đơn lẻ rất giống với thao tác quản trị hàng
 
 Nền tảng triển khai luồng phát hiện mối đe dọa và tự động khắc phục sự cố native trên AWS kết hợp với động cơ so sánh đánh giá SIEM luồng kép:
 
-```mermaid
+{{< mermaid >}}
 graph TD
     subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
         API["Log Audit AWS CloudTrail"] --> EB["Amazon EventBridge"]
@@ -52,7 +52,7 @@ graph TD
         S3 --> SQS["Amazon SQS Queue"] --> EA["Elastic Agent / Fleet"] --> SIEM["Elastic SIEM (Kibana)"]
         SIEM -.-> BENCH["Ma trận So sánh Phát hiện (detection-comparison.md)"]
     end
-```
+{{< /mermaid >}}
 
 #### Các bước Vận hành Chi tiết
 

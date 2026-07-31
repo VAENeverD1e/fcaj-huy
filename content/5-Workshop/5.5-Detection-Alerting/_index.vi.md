@@ -18,15 +18,15 @@ Trong phần này, bạn sẽ cấu hình **Các luật phát hiện trên Elast
 
 Trước khi đi vào chi tiết từng luật, đây là luồng end-to-end kết nối một sự kiện CloudTrail đến hành động khắc phục tự động:
 
-```mermaid
+{{< mermaid >}}
 graph LR
-    CT["Sự kiện CloudTrail / GuardDuty"] --> EB["Quy tắc EventBridge"]
-    EB --> SF["State Machine Step Functions"]
-    SF --> LMD["AWS Lambda Remediation Handler"]
-    LMD --> SNS["Cảnh báo Amazon SNS"]
-    LMD --> DDB["Nhật ký Audit DynamoDB"]
-    LMD --> ACT["Khắc phục Tự động (Revert S3 / Contain IAM SecurityDenyAll)"]
-```
+  CT["Sự kiện CloudTrail / GuardDuty"] --> EB["Quy tắc EventBridge"]
+  EB --> SF["State Machine Step Functions"]
+  SF --> LMD["AWS Lambda Remediation Handler"]
+  LMD --> SNS["Cảnh báo Amazon SNS"]
+  LMD --> DDB["Nhật ký Audit DynamoDB"]
+  LMD --> ACT["Khắc phục Tự động (Revert S3 / Contain IAM SecurityDenyAll)"]
+{{< /mermaid >}}
 
 Luồng hoạt động như sau:
 

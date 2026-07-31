@@ -34,7 +34,7 @@ The entire sequence can happen in under five minutes. The problem is that if you
 
 The platform runs two parallel tracks:
 
-```mermaid
+{{< mermaid >}}
 graph TD
     subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
         API["AWS CloudTrail Audit Logs"] --> EB["Amazon EventBridge"]
@@ -52,7 +52,7 @@ graph TD
         S3 --> SQS["Amazon SQS Queue"] --> EA["Elastic Agent / Fleet"] --> SIEM["Elastic SIEM (Kibana)"]
         SIEM -.-> BENCH["Detection Comparison Benchmark"]
     end
-```
+{{< /mermaid >}}
 
 #### How It Works
 

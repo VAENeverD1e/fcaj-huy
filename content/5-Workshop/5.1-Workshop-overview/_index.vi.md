@@ -31,7 +31,7 @@ Bài workshop này hướng dẫn bạn từng bước xây dựng một phòng 
 
 #### Sơ đồ Kiến trúc Hệ thống Cao cấp
 
-```mermaid
+{{< mermaid >}}
 graph TD
     subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
         A2["Tấn công AWS Cloud (CLI/SDK)"] --> C1["Log Audit AWS CloudTrail"]
@@ -50,7 +50,7 @@ graph TD
         S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
         KIB -.-> BENCH["Ma trận So sánh Phát hiện (detection-comparison.md)"]
     end
-```
+{{< /mermaid >}}
 
 ![SOC Detection Lab System Architecture](/images/5-Workshop/5.1-Workshop-overview/architecture_diagram.png)
 

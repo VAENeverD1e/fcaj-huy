@@ -1,31 +1,47 @@
 ---
 title: "Blog 2"
-date: 2024-01-01
-weight: 1
+date: 2026-07-31
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# AWS SOC DETECTION LAB — AUTOMATED THREAT DETECTION & PIPELINE OPERATIONS ON AWS
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+In Cloud Security, early detection and real-time response to suspicious activities are critical. The **AWS SOC Detection Lab** project is designed as an automated incident detection system combined with an **Operations Dashboard** to visualize and monitor the health of the entire pipeline.
 
-Key points to know:
+## Core Objectives
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+The project focuses on addressing two main challenges:
+1. **Automated Threat Detection**: Continuous monitoring of high-risk AWS operations and triggering immediate security alerts.
+2. **Pipeline Observability**: Providing a dashboard interface to measure the reliability, performance, and operational health of the detection pipeline itself.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+---
 
-...Image...
+## High-Level Workflow
 
-...Link...
+The system operates on a fully serverless Event-Driven architecture:
+1. **Detection**: Sensitive operations (e.g., public S3 bucket policies, unusual IAM creation) are logged by CloudTrail and GuardDuty.
+2. **Filtering**: EventBridge catches events in near real-time and immediately triggers AWS Lambda.
+3. **Processing & Alerting**: Lambda classifies event severity (`CRITICAL`, `HIGH`, `MEDIUM`), dispatches email notifications via SNS, and logs execution details into DynamoDB.
+4. **Visualization**: The Operations Dashboard queries the backend to display real-time system metrics and pipeline status.
 
-...Guide...
+---
+
+## Key Focus of the Operations Dashboard
+
+Unlike traditional SIEM tools that solely focus on alert contents, this **Operations Dashboard** serves as a operational telemetry aggregator (NOC/SOC Dashboard):
+
+* **Reliability Metrics**: Tracks total executions, success rates (`SUCCESS`), and failure logs (`ERROR`).
+* **Performance Benchmarking**: Measures processing latencies for Lambda execution and SNS publishing.
+* **Cost Optimization**: Incorporates caching guardrails and tracks usage against AWS Free Tier thresholds.
+
+---
+
+## Conclusion
+
+**AWS SOC Detection Lab** seamlessly bridges **Security**, **Automation**, and **Operations**. It provides a clear, high-level approach to securing AWS cloud infrastructure while ensuring complete visibility into the automated detection pipeline.
+
+**🔗 Further Reading:**
+- [Soc Detection Lab](https://github.com/VAENeverD1e/soc-detection-lab)
+- [Operations Dashboard](https://github.com/KoangWy/ops-dashboard)

@@ -18,15 +18,15 @@ In this module, you will configure **Elastic SIEM detection rules**, inspect the
 
 Before diving into individual rules, here is the end-to-end pipeline that connects a CloudTrail event to automated remediation:
 
-```mermaid
+{{< mermaid >}}
 graph LR
-    CT["CloudTrail / GuardDuty Event"] --> EB["EventBridge Rule"]
-    EB --> SF["Step Functions State Machine"]
-    SF --> LMD["AWS Lambda Remediation Handler"]
-    LMD --> SNS["Amazon SNS Alert"]
-    LMD --> DDB["Amazon DynamoDB Audit"]
-    LMD --> ACT["Auto-Remediation (Revert S3 / Contain IAM SecurityDenyAll)"]
-```
+  CT["CloudTrail / GuardDuty Event"] --> EB["EventBridge Rule"]
+  EB --> SF["Step Functions State Machine"]
+  SF --> LMD["AWS Lambda Remediation Handler"]
+  LMD --> SNS["Amazon SNS Alert"]
+  LMD --> DDB["Amazon DynamoDB Audit"]
+  LMD --> ACT["Auto-Remediation (Revert S3 / Contain IAM SecurityDenyAll)"]
+{{< /mermaid >}}
 
 The flow works as follows:
 
