@@ -16,7 +16,7 @@ Dự án này xây dựng một **Nền tảng Giám sát An toàn Thông tin & 
 
 Hệ thống bao phủ các kịch bản tấn công cloud rủi ro cao được ánh xạ theo chuẩn **MITRE ATT&CK** (như leo thang quyền hạn IAM, tạo tài khoản backdoor, công khai S3 storage bucket và exfiltration dữ liệu hàng loạt). Tuân thủ nghiêm ngặt **Chính sách Kiểm soát Chi phí Zero-Spend ($0.00 spend)** qua AWS Free Tier và gói dùng thử có kiểm soát, toàn bộ hạ tầng đám mây được tự động hóa 100% bằng **Hạ tầng dưới dạng Mã (Terraform)**. Ngoài ra, hệ thống cung cấp giao diện tích hợp bất đồng bộ qua **Amazon SQS** phục vụ cho các Trung tâm Vận hành An toàn Thông tin (SOC) của doanh nghiệp.
 
-### 2. Tuyên bố Vấn đề
+### 2. Vấn đề
 
 **Dịch chuyển lên Cloud làm thay đổi mặt trận tấn công — và kẻ tấn công khai thác sự bùng nổ lệnh API để ẩn mình.**
 
@@ -29,30 +29,6 @@ Chuỗi tấn công cloud điển hình diễn ra rất nhanh chóng:
 4. **Trích xuất / Công khai Dữ liệu (Exfiltration / Exposure)**: Tải dữ liệu nhạy cảm hàng loạt từ S3 bucket (`GetObject`) hoặc sửa đổi chính sách bucket (`PutBucketPolicy`) để công khai dữ liệu ra ngoài Internet (`Principal: *`).
 
 Vì mỗi lệnh API đơn lẻ rất giống với thao tác quản trị hàng ngày, luồng thu thập log SIEM theo lô truyền thống (gây độ trễ từ 5 đến 15 phút) khiến nhóm an ninh hoàn toàn bị động. Bài toán cốt lõi là phải xây dựng một kiến trúc có khả năng **bắt chính xác các mẫu hành vi nguy hiểm tức thì (<10 giây)**, kích hoạt thông báo tự động, lưu trữ nhật ký kiểm toán bất biến và dễ dàng tích hợp với hệ thống SOC doanh nghiệp sẵn có.
-
-### 3. Kiến trúc Giải pháp & Quy trình Vận hành
-
-Nền tảng triển khai luồng phát hiện mối đe dọa và tự động khắc phục sự cố native trên AWS kết hợp với động cơ so sánh đánh giá SIEM luồng kép:
-
-{{< mermaid >}}
-graph TD
-    subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
-        API["Log Audit AWS CloudTrail"] --> EB["Amazon EventBridge"]
-        GD["Cảnh báo AWS GuardDuty ML"] --> EB
-        SH["AWS Security Hub (CIS Benchmark)"] --> EB
-        EB --> SF["Bộ Phối hợp AWS Step Functions"]
-        SF --> LMD["AWS Lambda Tự động Khắc phục"]
-        LMD --> SNS["Amazon SNS Cảnh báo Quản trị"]
-        LMD --> DDB["Bảng Kiểm toán Amazon DynamoDB"]
-        LMD --> ACT["Tự động Phản ứng (Revert S3 / Contain IAM SecurityDenyAll)"]
-        API --> S3["Bucket Log Trung tâm Amazon S3"] --> ATH["Amazon Athena (Truy tìm Mối đe dọa bằng SQL)"]
-    end
-
-    subgraph DualIngest["Động cơ Ingestion Luồng kép & So sánh Đánh giá SIEM"]
-        S3 --> SQS["Amazon SQS Queue"] --> EA["Elastic Agent / Fleet"] --> SIEM["Elastic SIEM (Kibana)"]
-        SIEM -.-> BENCH["Ma trận So sánh Phát hiện (detection-comparison.md)"]
-    end
-{{< /mermaid >}}
 
 #### Các bước Vận hành Chi tiết
 
