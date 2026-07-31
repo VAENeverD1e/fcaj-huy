@@ -19,24 +19,18 @@ Designed to strictly fulfill and exceed all FCAJ project requirements, this work
 #### Target Architecture & Operational System
 
 {{< mermaid >}}
-graph TD
-    subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
-        A2["AWS Cloud Attack (CLI/SDK)"] --> C1["AWS CloudTrail Audit Logs"]
-        C1 --> C3["EventBridge Threat Patterns (sub-5s)"]
-        GD["AWS GuardDuty ML Findings"] --> C3
-        SH["AWS Security Hub (CIS Benchmark)"] --> C3
-        C3 --> SF["Step Functions Workflow"]
-        SF --> L1["AWS Lambda Remediation Handler"]
-        L1 --> SNS["Amazon SNS / Email Alert"]
-        L1 --> DDB["Amazon DynamoDB Audit Table"]
-        L1 --> ACT["Auto-Remediate (Revert S3 / Contain IAM SecurityDenyAll)"]
-        C1 --> S3["Amazon S3 Central Bucket"] --> ATH["Amazon Athena (SQL Threat Hunting)"]
-    end
-
-    subgraph ComparisonTrack["Dual-Ingestion & Detection Benchmark Engine"]
-        S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
-        KIB --> BENCH["Detection Comparison Benchmark (detection-comparison.md)"]
-    end
+graph LR
+    A2["AWS Attack (CLI/SDK)"] --> C1["CloudTrail Audit Logs"]
+    C1 --> C3["EventBridge Patterns"]
+    GD["GuardDuty ML"] --> C3
+    SH["Security Hub"] --> C3
+    C3 --> SF["Step Functions"]
+    SF --> L1["Lambda Handler"]
+    L1 --> SNS["Amazon SNS Alert"]
+    L1 --> DDB["DynamoDB Audit"]
+    L1 --> ACT["Auto-Remediate"]
+    C1 --> S3["S3 Central Bucket"] --> ATH["Athena Threat Hunting"]
+    S3 --> SQS["SQS Queue"] --> EF["Elastic Fleet"] --> KIB["Elastic SIEM"]
 {{< /mermaid >}}
 
 The lab implements an AWS-native detect-decide-act loop paired with an empirical SIEM detection comparison framework:

@@ -35,23 +35,17 @@ The entire sequence can happen in under five minutes. The problem is that if you
 The platform runs two parallel tracks:
 
 {{< mermaid >}}
-graph TD
-    subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
-        API["AWS CloudTrail Audit Logs"] --> EB["Amazon EventBridge"]
-        GD["AWS GuardDuty ML Findings"] --> EB
-        SH["AWS Security Hub (CIS Benchmark)"] --> EB
-        EB --> SF["AWS Step Functions Orchestrator"]
-        SF --> LMD["AWS Lambda Auto-Remediation"]
-        LMD --> SNS["Amazon SNS Administrator Alert"]
-        LMD --> DDB["Amazon DynamoDB Audit Table"]
-        LMD --> ACT["Auto-Remediation (Revert S3 / Contain IAM SecurityDenyAll)"]
-        API --> S3["Amazon S3 Central Log Bucket"] --> ATH["Amazon Athena (SQL Threat Hunting)"]
-    end
-
-    subgraph DualIngest["Dual-Ingestion & SIEM Detection Comparison Engine"]
-        S3 --> SQS["Amazon SQS Queue"] --> EA["Elastic Agent / Fleet"] --> SIEM["Elastic SIEM (Kibana)"]
-        SIEM -.-> BENCH["Detection Comparison Benchmark"]
-    end
+graph LR
+    API["CloudTrail Logs"] --> EB["EventBridge"]
+    GD["GuardDuty ML"] --> EB
+    SH["Security Hub"] --> EB
+    EB --> SF["Step Functions"]
+    SF --> LMD["Lambda Remediate"]
+    LMD --> SNS["SNS Alert"]
+    LMD --> DDB["DynamoDB Audit"]
+    LMD --> ACT["Auto-Remediate"]
+    API --> S3["S3 Bucket"] --> ATH["Athena Threat Hunting"]
+    S3 --> SQS["SQS Queue"] --> EA["Elastic Fleet"] --> SIEM["Elastic SIEM"]
 {{< /mermaid >}}
 
 #### How It Works

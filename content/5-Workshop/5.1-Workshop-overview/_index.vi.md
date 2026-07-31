@@ -32,24 +32,18 @@ Bài workshop này hướng dẫn bạn từng bước xây dựng một phòng 
 #### Sơ đồ Kiến trúc Hệ thống Cao cấp
 
 {{< mermaid >}}
-graph TD
-    subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
-        A2["Tấn công AWS Cloud (CLI/SDK)"] --> C1["Log Audit AWS CloudTrail"]
-        C1 --> C3["Mẫu Sự kiện EventBridge (dưới 5s)"]
-        GD["Cảnh báo AWS GuardDuty ML"] --> C3
-        SH["AWS Security Hub (CIS Benchmark)"] --> C3
-        C3 --> SF["Bộ Phối hợp Step Functions"]
-        SF --> L1["AWS Lambda Xử lý Remediate"]
-        L1 --> SNS["Amazon SNS / Email Alert"]
-        L1 --> DDB["Bảng Kiểm toán DynamoDB"]
-        L1 --> ACT["Tự động Phản ứng (Revert S3 / Contain IAM SecurityDenyAll)"]
-        C1 --> S3["Bucket Log Trung tâm S3"] --> ATH["Amazon Athena (Truy tìm SQL)"]
-    end
-
-    subgraph ComparisonTrack["Động cơ Ingestion Luồng kép & So sánh Benchmark"]
-        S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
-        KIB --> BENCH["Ma trận So sánh Phát hiện (detection-comparison.md)"]
-    end
+graph LR
+    A2["Tấn công AWS (CLI/SDK)"] --> C1["Log CloudTrail"]
+    C1 --> C3["Quy tắc EventBridge"]
+    GD["GuardDuty ML"] --> C3
+    SH["Security Hub"] --> C3
+    C3 --> SF["Step Functions"]
+    SF --> L1["Lambda Remediate"]
+    L1 --> SNS["Amazon SNS Alert"]
+    L1 --> DDB["DynamoDB Audit"]
+    L1 --> ACT["Tự động Phản ứng"]
+    C1 --> S3["S3 Central Bucket"] --> ATH["Athena SQL Hunting"]
+    S3 --> SQS["SQS Queue"] --> EF["Elastic Fleet"] --> KIB["Elastic SIEM"]
 {{< /mermaid >}}
 
 ![SOC Detection Lab System Architecture](/images/5-Workshop/5.1-Workshop-overview/architecture_diagram.png)
@@ -77,22 +71,22 @@ graph TD
 #### Nguyên tắc Thiết kế Bảo mật & Phân quyền IAM
 
 1. **Nguyên tắc Quyền Tối thiểu (Least Privilege)**:
-   - IAM Execution Role cho Lambda (`soc-lambda-execution-role`) chỉ được cấp chính xác các quyền cần thiết (`dynamodb:PutItem`, `sns:Publish`, `logs:CreateLogGroup`, `logs:PutLogEvents`).
-   - Access Policy của SQS Queue giới hạn quyền `sqs:SendMessage` cho duy nhất ARN của CloudTrail S3 bucket thông qua điều kiện `aws:SourceArn`.
+   * IAM Execution Role cho Lambda (`soc-lambda-execution-role`) chỉ được cấp chính xác các quyền cần thiết (`dynamodb:PutItem`, `sns:Publish`, `logs:CreateLogGroup`, `logs:PutLogEvents`).
+   * Access Policy của SQS Queue giới hạn quyền `sqs:SendMessage` cho duy nhất ARN của CloudTrail S3 bucket thông qua điều kiện `aws:SourceArn`.
 2. **Bảo mật Khóa & Thông tin Xác thực**:
-   - Tuyệt đối không hard-code Access Key trong mã Terraform, kịch bản Python hay trên GitHub repository.
-   - Webhook URL của Discord được truyền qua tham số môi trường (Environment Variables) mã hóa của Lambda.
+   * Tuyệt đối không hard-code Access Key trong mã Terraform, kịch bản Python hay trên GitHub repository.
+   * Webhook URL của Discord được truyền qua tham số môi trường (Environment Variables) mã hóa của Lambda.
 3. **Bảo vệ Dữ liệu & Mã hóa**:
-   - Các S3 Bucket chứa log CloudTrail bắt buộc bật **Server-Side Encryption (SSE-S3)** và cấu hình **Block Public Access**.
-   - Mọi kết nối mạng truyền tải dữ liệu đều sử dụng **TLS 1.3**.
+   * Các S3 Bucket chứa log CloudTrail bắt buộc bật **Server-Side Encryption (SSE-S3)** và cấu hình **Block Public Access**.
+   * Mọi kết nối mạng truyền tải dữ liệu đều sử dụng **TLS 1.3**.
 
 ---
 
 #### Khả năng Mở rộng & Vận hành Hệ thống
 
-- **Tính Co giãn Event-Driven**: Đường ống tự động hóa Serverless tự động co giãn từ 0 đến hàng ngàn sự kiện/giây mà không cần quản lý máy chủ.
-- **Hàng chờ Tách biệt**: SQS đóng vai trò bộ đệm hấp thụ các đợt bùng nổ log CloudTrail lớn, giúp Elastic Agent kéo log êm và không làm quá tải cụm SIEM.
-- **Giám sát Vận hành**: Các cảnh báo AWS CloudWatch Alarm liên tục theo dõi lỗi thực thi của Lambda (`Errors > 0`) và tin nhắn trong hàng chờ lỗi SQS Dead-Letter Queue (`ApproximateNumberOfMessagesVisible > 0`).
+* **Tính Co giãn Event-Driven**: Đường ống tự động hóa Serverless tự động co giãn từ 0 đến hàng ngàn sự kiện/giây mà không cần quản lý máy chủ.
+* **Hàng chờ Tách biệt**: SQS đóng vai trò bộ đệm hấp thụ các đợt bùng nổ log CloudTrail lớn, giúp Elastic Agent kéo log êm và không làm quá tải cụm SIEM.
+* **Giám sát Vận hành**: Các cảnh báo AWS CloudWatch Alarm liên tục theo dõi lỗi thực thi của Lambda (`Errors > 0`) và tin nhắn trong hàng chờ lỗi SQS Dead-Letter Queue (`ApproximateNumberOfMessagesVisible > 0`).
 
 ---
 
