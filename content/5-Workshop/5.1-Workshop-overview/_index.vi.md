@@ -31,21 +31,6 @@ Bài workshop này hướng dẫn bạn từng bước xây dựng một phòng 
 
 #### Sơ đồ Kiến trúc Hệ thống Cao cấp
 
-{{< mermaid >}}
-graph LR
-    A2["Tấn công AWS (CLI/SDK)"] --> C1["Log CloudTrail"]
-    C1 --> C3["Quy tắc EventBridge"]
-    GD["GuardDuty ML"] --> C3
-    SH["Security Hub"] --> C3
-    C3 --> SF["Step Functions"]
-    SF --> L1["Lambda Remediate"]
-    L1 --> SNS["Amazon SNS Alert"]
-    L1 --> DDB["DynamoDB Audit"]
-    L1 --> ACT["Tự động Phản ứng"]
-    C1 --> S3["S3 Central Bucket"] --> ATH["Athena SQL Hunting"]
-    S3 --> SQS["SQS Queue"] --> EF["Elastic Fleet"] --> KIB["Elastic SIEM"]
-{{< /mermaid >}}
-
 ![SOC Detection Lab System Architecture](/images/5-Workshop/5.1-Workshop-overview/architecture_diagram.png)
 
 ---

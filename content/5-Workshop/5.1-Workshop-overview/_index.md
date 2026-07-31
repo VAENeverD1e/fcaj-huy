@@ -31,21 +31,6 @@ This workshop guides you step-by-step through building a dual-track Security Ope
 
 #### High-Level System Architecture
 
-{{< mermaid >}}
-graph LR
-    A2["AWS Attack (CLI/SDK)"] --> C1["CloudTrail Audit Logs"]
-    C1 --> C3["EventBridge Patterns"]
-    GD["GuardDuty ML"] --> C3
-    SH["Security Hub"] --> C3
-    C3 --> SF["Step Functions"]
-    SF --> L1["Lambda Handler"]
-    L1 --> SNS["Amazon SNS Alert"]
-    L1 --> DDB["DynamoDB Audit"]
-    L1 --> ACT["Auto-Remediate"]
-    C1 --> S3["S3 Central Bucket"] --> ATH["Athena Threat Hunting"]
-    S3 --> SQS["SQS Queue"] --> EF["Elastic Fleet"] --> KIB["Elastic SIEM"]
-{{< /mermaid >}}
-
 ![SOC Detection Lab System Architecture](/images/5-Workshop/5.1-Workshop-overview/architecture_diagram.png)
 
 ---

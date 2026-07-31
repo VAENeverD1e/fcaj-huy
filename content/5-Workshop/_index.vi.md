@@ -32,21 +32,6 @@ Bài thực hành triển khai luồng phát hiện và ứng phó sự cố nat
 
 #### Sơ đồ Kiến trúc Hệ thống Tổng quan
 
-{{< mermaid >}}
-graph LR
-    A2["Tấn công AWS (CLI/SDK)"] --> C1["Log CloudTrail"]
-    C1 --> C3["Quy tắc EventBridge"]
-    GD["GuardDuty ML"] --> C3
-    SH["Security Hub"] --> C3
-    C3 --> SF["Step Functions"]
-    SF --> L1["Lambda Remediate"]
-    L1 --> SNS["Amazon SNS Alert"]
-    L1 --> DDB["DynamoDB Audit"]
-    L1 --> ACT["Tự động Phản ứng"]
-    C1 --> S3["S3 Central Bucket"] --> ATH["Athena SQL Hunting"]
-    S3 --> SQS["SQS Queue"] --> EF["Elastic Fleet"] --> KIB["Elastic SIEM"]
-{{< /mermaid >}}
-
 ---
 
 #### Nội dung bài Workshop

@@ -34,20 +34,6 @@ The entire sequence can happen in under five minutes. The problem is that if you
 
 The platform runs two parallel tracks:
 
-{{< mermaid >}}
-graph LR
-    API["CloudTrail Logs"] --> EB["EventBridge"]
-    GD["GuardDuty ML"] --> EB
-    SH["Security Hub"] --> EB
-    EB --> SF["Step Functions"]
-    SF --> LMD["Lambda Remediate"]
-    LMD --> SNS["SNS Alert"]
-    LMD --> DDB["DynamoDB Audit"]
-    LMD --> ACT["Auto-Remediate"]
-    API --> S3["S3 Bucket"] --> ATH["Athena Threat Hunting"]
-    S3 --> SQS["SQS Queue"] --> EA["Elastic Fleet"] --> SIEM["Elastic SIEM"]
-{{< /mermaid >}}
-
 #### How It Works
 
 1. **AWS Native Detect-Decide-Act Loop**:
