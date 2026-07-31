@@ -5,35 +5,28 @@ weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
+This section tracks my weekly progress throughout the 12-week internship at the **First Cloud AI Journey (FCAJ)** program. It is an honest record of what I learned, what I built, and the challenges I ran into along the way — from getting familiar with AWS basics in the early weeks to building a full SOC detection lab and a real-time operations dashboard by the end.
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+**Week 1:** [Internship Onboarding & AWS Core Fundamentals (IAM, Console, CLI, EC2)](1.1-week1/)
 
-**On this page**, you will need to introduce your worklog. **How** did you complete it? How many weeks did you take to complete the program? **What** did you do in those weeks?
+**Week 2:** [AWS Networking & Endpoint Detection Lab (Windows Attack Simulations & Custom KQL)](1.2-week2/)
 
-Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with weekly contents as follows:
+**Week 3:** [AWS Storage & Security (S3, IAM Roles) & CloudTrail Pipeline Setup](1.3-week3/)
 
-**Week 1:** [Getting familiar with AWS and basic AWS services](1.1-week1/)
+**Week 4:** [AWS Cloud Attack Simulations & SIEM KQL Rule Engineering](1.4-week4/)
 
-**Week 2:** [Doing task A...](1.2-week2/)
+**Week 5:** [AWS Event-Driven Architecture (EventBridge, Lambda & SNS Alerting)](1.5-week5/)
 
-**Week 3:** [Doing task B...](1.3-week3/)
+**Week 6:** [AWS NoSQL Storage (DynamoDB) & Serverless Pipeline Observability](1.6-week6/)
 
-**Week 4:** [Doing task C...](1.4-week4/)
+**Week 7:** [Passive Misconfiguration Scanning & Athena SQL Log Analytics](1.7-week7/)
 
-**Week 5:** [Doing task D...](1.5-week5/)
+**Week 8:** [AWS GuardDuty Managed Detection & Comparative Analysis Report](1.8-week8/)
 
-**Week 6:** [Doing task E...](1.6-week6/)
+**Week 9:** [Infrastructure as Code (IaC) with Terraform Cloud Stack](1.9-week9/)
 
-**Week 7:** [Doing task G...](1.7-week7/)
+**Week 10:** [Full-Stack Ops Dashboard — Backend API & Metric Aggregation](1.10-week10/)
 
-**Week 8:** [Doing task H...](1.8-week8/)
+**Week 11:** [Full-Stack Ops Dashboard — React Frontend UI & Latency Visualizations](1.11-week11/)
 
-**Week 9:** [Doing task I...](1.9-week9/)
-
-**Week 10:** [Doing task L...](1.10-week10/)
-
-**Week 11:** [Doing task M...](1.11-week11/)
-
-**Week 12:** [Doing task N...](1.12-week12/)
+**Week 12:** [End-to-End System Testing, Cost Verification & Final Portfolio](1.12-week12/)

@@ -1,59 +1,30 @@
 ---
 title: "Worklog Tuần 7"
 date: 2024-01-01
-weight: 1
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Mục tiêu Tuần 7
 
+* Tìm hiểu cơ chế quét cấu hình sai thụ động của AWS IAM Access Analyzer: Khởi tạo analyzer, đánh giá ranh giới trust zone, phát hiện quyền truy cập bên ngoài và xác minh chính sách.
+* Tìm hiểu công cụ truy vấn SQL serverless Amazon Athena và vai trò trong việc truy vấn log audit CloudTrail lưu trên S3.
+* Bật IAM Access Analyzer để phát hiện các quyền truy cập ngoài ý muốn vào tài nguyên AWS (S3, IAM, Lambda, SQS) mà không phát sinh chi phí duy trì.
+* Xây dựng bộ 4 câu lệnh truy vấn SQL SOC nòng cốt trong Amazon Athena Console để săn đe dọa trên tệp log CloudTrail S3.
 
-### Mục tiêu tuần 7:
+### Các công việc triển khai trong tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Nghiên cứu tính năng quét thụ động của IAM Access Analyzer.<br>- Bật IAM Access Analyzer với ranh giới trust zone là tài khoản AWS.<br>- Xem xét các cảnh báo được tạo ra cho các quyền truy cập liên tài khoản (cross-account) và chia sẻ công khai S3. | 27/07/2026 | 27/07/2026 | <https://000030.awsstudygroup.com> |
+| 3 | - Tìm hiểu các khái niệm truy vấn SQL serverless trên Amazon Athena.<br>- Cấu hình đường dẫn lưu kết quả truy vấn Athena trên S3 bucket. | 28/07/2026 | 28/07/2026 | <https://000106.awsstudygroup.com> |
+| 4 | - Tìm hiểu cách tích hợp AWS CloudTrail với Amazon Athena.<br>- Khởi tạo bảng Athena cho log CloudTrail trên S3 bằng mẫu chuẩn của AWS. | 29/07/2026 | 29/07/2026 | <https://000040.awsstudygroup.com> |
+| 5 | - Thực hành thử nghiệm 4 câu lệnh truy vấn SQL SOC trong Athena Query Editor:<br>&emsp;+ Truy vấn 1: Top các địa chỉ IP gọi API thất bại (`errorCode IS NOT NULL`).<br>&emsp;+ Truy vấn 2: Lịch sử tạo IAM access key (`CreateAccessKey`).<br>&emsp;+ Truy vấn 3: Thay đổi chính sách S3 bucket (`PutBucketPolicy`/`DeleteBucketPolicy`).<br>&emsp;+ Truy vấn 4: Các hành động API của tài khoản Root trong 7 ngày qua. | 30/07/2026 | 30/07/2026 | <https://000106.awsstudygroup.com> |
+| 6 | - Kiểm tra kết quả thực thi và thời gian truy vấn trên Athena Console.<br>- Xác nhận dịch vụ Athena và IAM Access Analyzer không phát sinh chi phí hạ tầng duy trì hàng tháng. | 31/07/2026 | 31/07/2026 | AWS Cost Management |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Kết quả đạt được Tuần 7
 
-
-### Kết quả đạt được tuần 7:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Bật thành công AWS IAM Access Analyzer giúp tự động phát hiện cấu hình sai thụ động (miễn phí vĩnh viễn).
+* Cấu hình Athena Query Editor và khởi tạo bảng log CloudTrail sử dụng mẫu có sẵn trên AWS console.
+* Xây dựng bộ 4 câu lệnh truy vấn SQL điều tra sự cố thực tế giúp săn đe dọa trực tiếp trên tệp log CloudTrail S3 thô.
+* Xác nhận tính năng quét thụ động và truy vấn Athena theo nhu cầu không làm phát sinh chi phí hạ tầng hàng tháng.

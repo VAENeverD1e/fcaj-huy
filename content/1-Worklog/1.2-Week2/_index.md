@@ -1,57 +1,32 @@
 ---
 title: "Week 2 Worklog"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 2 Objectives
 
+* Understand AWS VPC networking concepts: VPC CIDR blocks, public/private subnets, Internet Gateways, Security Groups vs. Network ACLs.
+* Set up a dedicated Windows Server / Windows 11 endpoint threat detection environment.
+* Deploy Elastic Agent & Sysmon with custom SwiftOnSecurity configuration for full endpoint telemetry collection.
+* Execute 7 Atomic Red Team attack simulations covering credential dumping, privilege escalation, persistence, and execution techniques.
+* Engineer custom KQL detection rules and write 4 comprehensive threat hunt reports.
 
-### Week 2 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Study AWS VPC networking: public vs. private subnets, route tables, Security Groups, NACLs.<br>- Configure network isolation rules for attack simulation environment. | 06/22/2026 | 06/22/2026 | <https://000003.awsstudygroup.com><br><https://000092.awsstudygroup.com> |
+| Tue | - Provision Windows 11 / Windows Server endpoint environment.<br>- Install Sysmon v15+ with SwiftOnSecurity configuration for process tracking.<br>- Install Elastic Agent and establish enrollment with Elastic SIEM. | 06/23/2026 | 06/23/2026 | <https://000093.awsstudygroup.com><br><https://github.com/SwiftOnSecurity/sysmon-config> |
+| Wed | - Execute Endpoint Attack Scenarios 1–3:<br>&emsp;+ Windows Process Creation (T1059.001 - PowerShell Execution)<br>&emsp;+ Credential Dumping (T1003.001 - LSASS Memory Dumping via Mimikatz/ProcDump)<br>&emsp;+ Privilege Escalation (T1548.002 - Bypass UAC). | 06/24/2026 | 06/24/2026 | Atomic Red Team Library |
+| Thu | - Execute Endpoint Attack Scenarios 4–7:<br>&emsp;+ Persistence via Registry Run Keys (T1547.001)<br>&emsp;+ Scheduled Task Creation (T1053.005)<br>&emsp;+ Defense Evasion (T1562.001 - Impair Defenses)<br>&emsp;+ Discovery & Enumeration (T1082 - System Information Discovery). | 06/25/2026 | 06/25/2026 | Atomic Red Team Library |
+| Fri | - Verify telemetry ingestion in Elastic SIEM (`winlogbeat-*` & `logs-windows.*`).<br>- Write and validate 7 custom KQL detection rules in SIEM.<br>- Author 4 detailed threat hunt reports documenting attack vectors, logs, and mitigation recommendations. | 06/26/2026 | 06/26/2026 | Elastic Security Docs |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 2 Achievements
 
-
-### Week 2 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Mastered AWS VPC networking fundamentals, subnet routing, and firewall/security group configuration.
+* Successfully built a fully instrumented Windows threat detection lab using Sysmon and Elastic Agent.
+* Simulated 7 real-world endpoint attack scenarios using Atomic Red Team frameworks.
+* Developed 7 high-fidelity KQL detection rules targeting process creation, credential access, and persistence.
+* Authored 4 comprehensive threat hunt reports establishing an active detect-hunt-harden loop.

@@ -1,57 +1,30 @@
 ---
 title: "Week 7 Worklog"
 date: 2024-01-01
-weight: 1
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 7 Objectives
 
+* Understand AWS IAM Access Analyzer passive security scanning concepts: analyzer creation, trust zone evaluation, external access findings, and policy validation.
+* Learn Amazon Athena serverless SQL query engine and its role in querying CloudTrail audit logs stored in Amazon S3.
+* Enable IAM Access Analyzer to detect unintended external access to AWS resources (S3, IAM, Lambda, SQS) without incurring extra recording costs.
+* Author a library of 4 core SOC forensic SQL queries in Amazon Athena Console for threat hunting over CloudTrail S3 logs.
 
-### Week 7 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Study IAM Access Analyzer passive scanning capabilities.<br>- Enable IAM Access Analyzer with the account as the trust zone boundary.<br>- Review findings generated for external cross-account access and public S3 resource shares. | 07/27/2026 | 07/27/2026 | <https://000030.awsstudygroup.com> |
+| Tue | - Learn Amazon Athena serverless SQL query concepts.<br>- Configure Athena query result output location in Amazon S3. | 07/28/2026 | 07/28/2026 | <https://000106.awsstudygroup.com> |
+| Wed | - Explore AWS CloudTrail integration with Amazon Athena.<br>- Create Athena table over CloudTrail S3 log bucket using standard AWS console template. | 07/29/2026 | 07/29/2026 | <https://000040.awsstudygroup.com> |
+| Thu | - Author and test 4 SOC forensic SQL queries in Athena Query Editor:<br>&emsp;+ Query 1: Top IP addresses making failed API calls (`errorCode IS NOT NULL`).<br>&emsp;+ Query 2: IAM access key creation timeline (`CreateAccessKey`).<br>&emsp;+ Query 3: S3 bucket policy changes (`PutBucketPolicy`/`DeleteBucketPolicy`).<br>&emsp;+ Query 4: Root user API actions executed within the last 7 days. | 07/30/2026 | 07/30/2026 | <https://000106.awsstudygroup.com> |
+| Fri | - Review query execution results and execution times in Athena Console.<br>- Confirm zero additional standing infrastructure cost for Athena and IAM Access Analyzer. | 07/31/2026 | 07/31/2026 | AWS Cost Management |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 7 Achievements
 
-
-### Week 7 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully enabled AWS IAM Access Analyzer for automated, passive misconfiguration detection (always free).
+* Configured Amazon Athena Query Editor and created a CloudTrail log table using standard AWS console templates.
+* Built a practical library of 4 forensic SQL queries enabling rapid threat hunting directly against raw S3 audit logs.
+* Confirmed that passive scanning and on-demand Athena queries incur zero standing monthly costs.

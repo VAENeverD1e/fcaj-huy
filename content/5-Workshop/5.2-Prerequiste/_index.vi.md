@@ -1,242 +1,117 @@
 ---
-title : "Các bước chuẩn bị"
-date : 2024-01-01 
-weight : 2
-chapter : false
-pre : " <b> 5.2. </b> "
+title: "Tiền đề & Chuẩn bị"
+date: 2026-07-29
+weight: 2
+chapter: false
+pre: " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:*",
-                "cloudwatch:*",
-                "ec2:AcceptTransitGatewayPeeringAttachment",
-                "ec2:AcceptTransitGatewayVpcAttachment",
-                "ec2:AllocateAddress",
-                "ec2:AssociateAddress",
-                "ec2:AssociateIamInstanceProfile",
-                "ec2:AssociateRouteTable",
-                "ec2:AssociateSubnetCidrBlock",
-                "ec2:AssociateTransitGatewayRouteTable",
-                "ec2:AssociateVpcCidrBlock",
-                "ec2:AttachInternetGateway",
-                "ec2:AttachNetworkInterface",
-                "ec2:AttachVolume",
-                "ec2:AttachVpnGateway",
-                "ec2:AuthorizeSecurityGroupEgress",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateClientVpnEndpoint",
-                "ec2:CreateClientVpnRoute",
-                "ec2:CreateCustomerGateway",
-                "ec2:CreateDhcpOptions",
-                "ec2:CreateFlowLogs",
-                "ec2:CreateInternetGateway",
-                "ec2:CreateLaunchTemplate",
-                "ec2:CreateNetworkAcl",
-                "ec2:CreateNetworkInterface",
-                "ec2:CreateNetworkInterfacePermission",
-                "ec2:CreateRoute",
-                "ec2:CreateRouteTable",
-                "ec2:CreateSecurityGroup",
-                "ec2:CreateSubnet",
-                "ec2:CreateSubnetCidrReservation",
-                "ec2:CreateTags",
-                "ec2:CreateTransitGateway",
-                "ec2:CreateTransitGatewayPeeringAttachment",
-                "ec2:CreateTransitGatewayPrefixListReference",
-                "ec2:CreateTransitGatewayRoute",
-                "ec2:CreateTransitGatewayRouteTable",
-                "ec2:CreateTransitGatewayVpcAttachment",
-                "ec2:CreateVpc",
-                "ec2:CreateVpcEndpoint",
-                "ec2:CreateVpcEndpointConnectionNotification",
-                "ec2:CreateVpcEndpointServiceConfiguration",
-                "ec2:CreateVpnConnection",
-                "ec2:CreateVpnConnectionRoute",
-                "ec2:CreateVpnGateway",
-                "ec2:DeleteCustomerGateway",
-                "ec2:DeleteFlowLogs",
-                "ec2:DeleteInternetGateway",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DeleteNetworkInterfacePermission",
-                "ec2:DeleteRoute",
-                "ec2:DeleteRouteTable",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DeleteSubnet",
-                "ec2:DeleteSubnetCidrReservation",
-                "ec2:DeleteTags",
-                "ec2:DeleteTransitGateway",
-                "ec2:DeleteTransitGatewayPeeringAttachment",
-                "ec2:DeleteTransitGatewayPrefixListReference",
-                "ec2:DeleteTransitGatewayRoute",
-                "ec2:DeleteTransitGatewayRouteTable",
-                "ec2:DeleteTransitGatewayVpcAttachment",
-                "ec2:DeleteVpc",
-                "ec2:DeleteVpcEndpoints",
-                "ec2:DeleteVpcEndpointServiceConfigurations",
-                "ec2:DeleteVpnConnection",
-                "ec2:DeleteVpnConnectionRoute",
-                "ec2:Describe*",
-                "ec2:DetachInternetGateway",
-                "ec2:DisassociateAddress",
-                "ec2:DisassociateRouteTable",
-                "ec2:GetLaunchTemplateData",
-                "ec2:GetTransitGatewayAttachmentPropagations",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:ModifySecurityGroupRules",
-                "ec2:ModifyTransitGatewayVpcAttachment",
-                "ec2:ModifyVpcAttribute",
-                "ec2:ModifyVpcEndpoint",
-                "ec2:ReleaseAddress",
-                "ec2:ReplaceRoute",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-                "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreatePolicy",
-                "iam:CreateRole",
-                "iam:DeleteInstanceProfile",
-                "iam:DeletePolicy",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetPolicy",
-                "iam:GetRole",
-                "iam:GetRolePolicy",
-                "iam:ListPolicyVersions",
-                "iam:ListRoles",
-                "iam:PassRole",
-                "iam:PutRolePolicy",
-                "iam:RemoveRoleFromInstanceProfile",
-                "lambda:CreateFunction",
-                "lambda:DeleteFunction",
-                "lambda:DeleteLayerVersion",
-                "lambda:GetFunction",
-                "lambda:GetLayerVersion",
-                "lambda:InvokeFunction",
-                "lambda:PublishLayerVersion",
-                "logs:CreateLogGroup",
-                "logs:DeleteLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "route53:ChangeTagsForResource",
-                "route53:CreateHealthCheck",
-                "route53:CreateHostedZone",
-                "route53:CreateTrafficPolicy",
-                "route53:DeleteHostedZone",
-                "route53:DisassociateVPCFromHostedZone",
-                "route53:GetHostedZone",
-                "route53:ListHostedZones",
-                "route53domains:ListDomains",
-                "route53domains:ListOperations",
-                "route53domains:ListTagsForDomain",
-                "route53resolver:AssociateResolverEndpointIpAddress",
-                "route53resolver:AssociateResolverRule",
-                "route53resolver:CreateResolverEndpoint",
-                "route53resolver:CreateResolverRule",
-                "route53resolver:DeleteResolverEndpoint",
-                "route53resolver:DeleteResolverRule",
-                "route53resolver:DisassociateResolverEndpointIpAddress",
-                "route53resolver:DisassociateResolverRule",
-                "route53resolver:GetResolverEndpoint",
-                "route53resolver:GetResolverRule",
-                "route53resolver:ListResolverEndpointIpAddresses",
-                "route53resolver:ListResolverEndpoints",
-                "route53resolver:ListResolverRuleAssociations",
-                "route53resolver:ListResolverRules",
-                "route53resolver:ListTagsForResource",
-                "route53resolver:UpdateResolverEndpoint",
-                "route53resolver:UpdateResolverRule",
-                "s3:AbortMultipartUpload",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:DeleteObject",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:GetBucketAcl",
-                "s3:GetBucketOwnershipControls",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketVersioning",
-                "s3:ListAccessPoints",
-                "s3:ListAccessPointsForObjectLambda",
-                "s3:ListAllMyBuckets",
-                "s3:ListBucket",
-                "s3:ListBucketMultipartUploads",
-                "s3:ListBucketVersions",
-                "s3:ListJobs",
-                "s3:ListMultipartUploadParts",
-                "s3:ListMultiRegionAccessPoints",
-                "s3:ListStorageLensConfigurations",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutObject",
-                "secretsmanager:CreateSecret",
-                "secretsmanager:DeleteSecret",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:ListSecrets",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:PutResourcePolicy",
-                "secretsmanager:TagResource",
-                "secretsmanager:UpdateSecret",
-                "sns:ListTopics",
-                "ssm:DescribeInstanceProperties",
-                "ssm:DescribeSessions",
-                "ssm:GetConnectionStatus",
-                "ssm:GetParameters",
-                "ssm:ListAssociations",
-                "ssm:ResumeSession",
-                "ssm:StartSession",
-                "ssm:TerminateSession"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
+# 5.2 Tiền đề & Chuẩn bị Môi trường
 
+#### Tổng quan Yêu cầu
+
+Trước khi triển khai SOC Detection Lab, bạn cần chuẩn bị và xác nhận cấu hình cho **Tài khoản AWS Management Console**, **Quyền hạn triển khai IAM**, **Biện pháp kiểm soát chi phí AWS Zero-Spend Budget**, **Elastic SIEM (Elastic Cloud hoặc ELK Stack trên VM)**, và **Môi trường máy ảo nạn nhân phục vụ giả lập tấn công**.
+
+---
+
+#### 1. Cấu hình Tài khoản AWS & Quyền IAM
+
+##### Bước 1.1: Đăng nhập vào AWS Management Console
+Truy cập [AWS Management Console](https://console.aws.amazon.com/) và đăng nhập bằng tài khoản root hoặc tài khoản IAM có quyền quản trị.
+
+![AWS Management Console Login](/images/5-Workshop/5.2-Prerequisite/aws_console_login.png)
+
+##### Bước 1.2: Cấu hình Tài khoản IAM & Access Key
+1. Mở **IAM Console** bằng cách tìm kiếm **IAM** trên thanh tìm kiếm phía trên.
+2. Chọn **Users** → **Add users** (ví dụ: `soc-lab-admin`).
+3. Tại mục **Permissions options**, chọn **Attach policies directly** và gán chính sách `AdministratorAccess` (hoặc policy tối thiểu tùy chỉnh).
+4. Chuyển sang tab **Security credentials** và nhấn **Create access key**. Chọn mục **Command Line Interface (CLI)**.
+5. Lưu lại **Access Key ID** và **Secret Access Key** ở vị trí an toàn.
+
+![AWS IAM User & Security Credentials Console](/images/5-Workshop/5.2-Prerequisite/aws_iam_console.png)
+
+##### Bước 1.3: Cấu hình AWS CLI (trên FLARE-VM / Terminal Thực hành)
+Mở terminal (bên trong máy ảo **FLARE-VM** hoặc máy trạm của bạn) và xác thực môi trường AWS:
+```bash
+aws configure
+# AWS Access Key ID [None]: <NHAP_AWS_ACCESS_KEY_ID_CUA_BAN>
+# AWS Secret Access Key [None]: <NHAP_AWS_SECRET_ACCESS_KEY_CUA_BAN>
+# Default region name [None]: us-east-1
+# Default output format [None]: json
+
+# Kiểm tra xác thực thành công:
+aws sts get-caller-identity
 ```
 
-#### Khởi tạo tài nguyên bằng CloudFormation
+![AWS CLI Configuration Verification](/images/5-Workshop/5.2-Prerequisite/aws_cli_configure.png)
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+---
 
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
+#### 2. Cấu hình AWS Zero-Spend Budget (Kiểm soát Chi phí)
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+Để đảm bảo tuyệt đối không phát sinh chi phí trong suốt quá trình thực hành:
 
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
+##### Cách 1: Qua AWS Console:
+1. Mở **AWS Billing and Cost Management Console**.
+2. Chọn **Budgets** ở menu bên trái và nhấn **Create budget**.
+3. Chọn mẫu **Zero spend budget**.
+4. Nhập email nhận thông báo cảnh báo nếu chi phí phát sinh vượt quá **$0.01**.
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+##### Cách 2: Qua AWS CLI:
+```bash
+aws budgets create-budget \
+  --account-id $(aws sts get-caller-identity --query "Account" --output text) \
+  --budget '{
+    "BudgetName": "SOC-Lab-Zero-Spend-Guardrail",
+    "BudgetLimit": { "Amount": "0.01", "Unit": "USD" },
+    "CostFilters": {},
+    "CostTypes": { "IncludeTax": true, "IncludeSubscription": true, "UseBlended": false },
+    "TimeUnit": "MONTHLY",
+    "BudgetType": "COST"
+  }' \
+  --notifications-with-subscribers '[{
+    "Notification": {
+      "NotificationType": "ACTUAL",
+      "ComparisonOperator": "GREATER_THAN",
+      "Threshold": 100,
+      "ThresholdType": "PERCENTAGE"
+    },
+    "Subscribers": [{ "SubscriptionType": "EMAIL", "Address": "email-cua-ban@example.com" }]
+  }]'
+```
 
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
+![AWS Billing & Zero Spend Budget Console](/images/5-Workshop/5.2-Prerequisite/aws_free_tier_budget.png)
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+---
 
-+ 2 VPCs đã được tạo
+#### 3. Cấu hình Elastic SIEM & Môi trường Thử nghiệm
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+##### 3.1 Môi trường Elastic SIEM (Cloud SaaS hoặc ELK Stack trên VM)
+Bạn có thể triển khai Elastic SIEM linh hoạt theo 2 hình thức:
+- **Tùy chọn A — Elastic Cloud (SaaS)**: Đăng ký tài khoản dùng thử 14 ngày miễn phí tại [elastic.co](https://cloud.elastic.co/) và khởi tạo deployment tên `SOC-Detection-Lab`.
+- **Tùy chọn B — ELK Stack trên VM (Tự quản lý)**: Triển khai Elasticsearch + Kibana + Fleet Server trên máy ảo của riêng bạn (VirtualBox, VMware, Proxmox, AWS EC2, v.v.).
 
-+ 3 EC2s đã được tạo
+Dù sử dụng mô hình nào, bạn chỉ cần đảm bảo có đủ các thông số sau:
+1. **Kibana Console URL** (Đường dẫn Cloud hoặc `http://<VM_IP>:5601`).
+2. **Elasticsearch Endpoint & API Key / Quyền xác thực**.
+3. **Fleet Server & Integrations**: Cài đặt integration **AWS CloudTrail** trong Kibana (**Fleet** → **Integrations**) để kéo log từ hàng chờ SQS.
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+![Elastic Kibana Console Homepage & Fleet Integrations](/images/5-Workshop/5.2-Prerequisite/elastic_kibana_home.png)
+
+##### 3.2 Máy trạm Nạn nhân (Mục tiêu Giả lập Tấn công)
+- **Vai trò**: Dùng duy nhất làm môi trường mục tiêu để thực thi các kịch bản giả lập tấn công (như trích xuất credential, nâng quyền, hoặc chạy kịch bản dò quét API). Bộ thu thập log trên VM sẽ ghi nhận các hành vi này và đẩy về SIEM.
+- **Nền tảng**: Máy ảo VM hoặc môi trường lab riêng biệt (như Windows cài Sysmon / FLARE-VM hoặc Linux VM).
+- *Lưu ý*: Việc triển khai hạ tầng bằng **Terraform** và các lệnh quản trị **AWS CLI** được thực thi trực tiếp trên **máy quản trị cục bộ (máy host của bạn)**, không chạy bên trong máy ảo nạn nhân.
+
+---
+
+#### 4. Danh mục Công cụ & Lệnh Kiểm tra Phiên bản
+
+Trước khi chuyển sang bước triển khai, hãy đảm bảo môi trường thực hành của bạn đã được cài đặt và kiểm tra thành công các công cụ sau:
+
+| Công cụ | Phiên bản Tối thiểu | Lệnh Nhanh Kiểm tra Phiên bản |
+| :--- | :--- | :--- |
+| **AWS CLI** | v2.x | `aws --version` |
+| **HashiCorp Terraform** | v1.5.0+ | `terraform -version` |
+| **Python** | 3.11+ | `python3 --version` |
+| **Node.js / npm** | v18+ / v9+ | `node --version` |

@@ -1,57 +1,31 @@
 ---
 title: "Week 9 Worklog"
 date: 2024-01-01
-weight: 1
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 9 Objectives
 
+* Learn Infrastructure as Code (IaC) principles, HashiCorp Configuration Language (HCL) syntax, and Terraform declarative workflow (`init`, `plan`, `apply`, `destroy`).
+* Understand Terraform State management, local vs. remote backends, resource dependencies (`depends_on`), and input/output variables.
+* Codify the entire AWS security cloud stack using Terraform modules (`terraform/` directory).
+* Validate automated, single-command environment replication (`terraform apply`) for all cloud components.
 
-### Week 9 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Study Terraform fundamentals, AWS Provider configuration, and HCL code structuring principles.<br>- Initialize Terraform project directory (`terraform/`) and configure `main.tf`, `variables.tf`, and `outputs.tf`. | 08/10/2026 | 08/10/2026 | <https://000102.awsstudygroup.com> |
+| Tue | - Codify Storage & Logging Layer in Terraform:<br>&emsp;+ Amazon S3 bucket module (`s3.tf`) with server-side encryption, Block Public Access, and bucket policies.<br>&emsp;+ AWS CloudTrail module (`cloudtrail.tf`) configured for multi-region logging.<br>&emsp;+ Amazon SQS queue module (`sqs.tf`) with dead-letter queue. | 08/11/2026 | 08/11/2026 | <https://000037.awsstudygroup.com> |
+| Wed | - Codify Serverless & Automation Layer in Terraform:<br>&emsp;+ Amazon EventBridge rules (`eventbridge.tf`) matching CloudTrail security event patterns.<br>&emsp;+ AWS Lambda function module (`lambda.tf`) including Python code packaging and IAM execution role.<br>&emsp;+ Amazon SNS topic module (`sns.tf`) and email/webhook subscriptions. | 08/12/2026 | 08/12/2026 | <https://000038.awsstudygroup.com> |
+| Thu | - Codify NoSQL & Analytics Layer in Terraform:<br>&emsp;+ Amazon DynamoDB table (`dynamodb.tf`) with `AlertID` key and TTL configuration.<br>&emsp;+ Amazon Athena database & workgroup module (`athena.tf`).<br>&emsp;+ AWS IAM Access Analyzer module (`access_analyzer.tf`). | 08/13/2026 | 08/13/2026 | <https://000102.awsstudygroup.com> |
+| Fri | - Test full lifecycle execution: run `terraform plan` to audit 20+ plan resources.<br>- Execute `terraform apply` to provision the entire cloud architecture in a clean AWS region within ~3 minutes.<br>- Verify successful provisioned state and run `terraform destroy` test. | 08/14/2026 | 08/14/2026 | Terraform IaC Validation |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 9 Achievements
 
-
-### Week 9 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Mastered Infrastructure as Code (IaC) engineering using Terraform and HashiCorp Configuration Language (HCL).
+* Fully codified the entire AWS cloud security stack into modular, reusable Terraform scripts under `terraform/`.
+* Replaced manual AWS Console configurations with 100% reproducible Infrastructure as Code.
+* Demonstrated single-command cloud environment deployment (`terraform apply`) in under 3 minutes.
+* Ensured secure Terraform state file management with sensitive parameter masking and git isolation (`.gitignore`).

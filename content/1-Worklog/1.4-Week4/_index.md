@@ -1,57 +1,32 @@
 ---
 title: "Week 4 Worklog"
 date: 2024-01-01
-weight: 1
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 4 Objectives
 
+* Analyze CloudTrail JSON log event schemas (`userIdentity`, `eventName`, `eventSource`, `requestParameters`, `sourceIPAddress`).
+* Learn cloud security attack vectors, MITRE ATT&CK Cloud Matrix.
+* Execute 5 realistic AWS cloud attack scenario simulations using a dedicated simulation IAM identity (`lab-attacker`).
+* Engineer custom KQL detection rules in Elastic SIEM to detect cloud adversary behavior in real time.
+* Verify automated cleanup routines to revert lab infrastructure immediately post-simulation.
 
-### Week 4 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Study MITRE ATT&CK for Cloud.<br>- Create non-privileged simulation IAM user (`lab-attacker`) and generate access keys for attack execution.<br>- Deep dive into CloudTrail event structure for authentication and API calls. | 07/06/2026 | 07/06/2026 | <https://000044.awsstudygroup.com><br>MITRE ATT&CK Cloud Matrix |
+| Tue | - Execute Cloud Attack Scenario 8: AWS Root Account Console Login without MFA.<br>- Execute Cloud Attack Scenario 9: IAM Privilege Reconnaissance & Policy Enumeration (`GetAccountSummary`, `ListUsers`, `ListRoles`). | 07/07/2026 | 07/07/2026 | <https://000011.awsstudygroup.com> |
+| Wed | - Execute Cloud Attack Scenario 10: IAM Backdoor Persistence (creating rogue access keys `CreateAccessKey` and attaching admin policies `AttachUserPolicy`).<br>- Execute Cloud Attack Scenario 11: Bulk S3 Data Exfiltration (`GetObject` enumeration across sensitive buckets). | 07/08/2026 | 07/08/2026 | <https://000069.awsstudygroup.com> |
+| Thu | - Execute Cloud Attack Scenario 12: Public S3 Bucket Exposure (modifying bucket ACL / removing Block Public Access via `PutBucketAcl` / `DeletePublicAccessBlock`).<br>- Run immediate lab cleanup scripts to revert permissions. | 07/09/2026 | 07/09/2026 | <https://000030.awsstudygroup.com> |
+| Fri | - Query ingested CloudTrail logs in Elastic SIEM to locate exact API audit signatures.<br>- Develop, test, and tune 5 custom KQL rules targeting root logins, IAM recon, rogue credentials, S3 exfiltration, and public bucket exposure. | 07/10/2026 | 07/10/2026 | Elastic Security Rule Engine |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 4 Achievements
 
-
-### Week 4 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Gained clear understanding of AWS CloudTrail JSON audit event structures and API signatures.
+* Successfully executed 5 cloud attack simulations covering authentication abuse, privilege recon, persistence, and data exfiltration.
+* Authored 5 high-fidelity custom KQL rules in Elastic SIEM with low false-positive rates.
+* Verified lab cleanup procedures to maintain zero security exposure post-testing.
+* Established a fully functional hybrid detection engine covering both Windows endpoints and AWS cloud infrastructure.

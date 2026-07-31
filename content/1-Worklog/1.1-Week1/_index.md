@@ -5,53 +5,27 @@ weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 1 Objectives
 
+* Complete FCAJ internship onboarding, understand program rules, guidelines, and roadmap.
+* Learn AWS fundamentals: Console navigation, AWS CLI configuration, IAM users, credentials, MFA, and Free Tier budget safety.
+* Master Amazon EC2 basic operations: instance creation, AMI selection, EBS volumes, and Security Group configurations.
+* Scope the project requirements and prepare the architecture design for the Endpoint Threat Detection Lab.
 
-### Week 1 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Attend FCAJ orientation & team introduction.<br>- Review internship guidelines, rules, and expectations.<br>- Define 12-week roadmap combining AWS learning & SOC Lab project. | 06/15/2026 | 06/15/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| Tue | - Set up AWS Free Tier account.<br>- Configure IAM root security: enable MFA, create dedicated IAM admin user.<br>- Set up AWS Zero-Spend Budget Alarms and CloudWatch cost alerts. | 06/16/2026 | 06/16/2026 | <https://000001.awsstudygroup.com><br><https://000007.awsstudygroup.com> |
+| Wed | - Install and configure AWS CLI on local workstation (`aws configure`).<br>- Practice CLI operations: managing key pairs, listing regions, inspecting EC2 instances. | 06/17/2026 | 06/17/2026 | <https://000011.awsstudygroup.com> |
+| Thu | - Learn EC2 core concepts: Instance types (t2.micro/t3.micro), AMIs, EBS volume types.<br>- Learn SSH key pair management and Security Group inbound/outbound rules. | 06/18/2026 | 06/18/2026 | <https://000004.awsstudygroup.com> |
+| Fri | - Launch Linux & Windows EC2 test instances.<br>- Test SSH and RDP connections, attach/detach EBS storage volumes.<br>- Scope architecture for the local/cloud Endpoint Detection Lab. | 06/19/2026 | 06/19/2026 | <https://000048.awsstudygroup.com> |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 1 Achievements
 
-
-### Week 1 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Successfully onboarded to the FCAJ internship program and aligned on project deliverables.
+* Established a secure AWS Free Tier environment guarded by zero-spend budget alarms.
+* Mastered AWS CLI installation, credential management, and dual Console/CLI administration.
+* Gained hands-on proficiency in provisioning, configuring, and connecting to Amazon EC2 instances with EBS volumes.
+* Scoped the preliminary architecture for the SOC Threat Detection Lab.

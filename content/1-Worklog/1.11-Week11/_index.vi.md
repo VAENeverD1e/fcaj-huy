@@ -1,59 +1,30 @@
 ---
 title: "Worklog Tuần 11"
 date: 2024-01-01
-weight: 2
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Mục tiêu Tuần 11
 
+* Học cách thiết kế component, quản lý trạng thái (`useState`, `useEffect`), gọi REST API (`fetch` / `axios`) và tích hợp thư viện biểu đồ trực quan hóa dữ liệu.
+* Xây dựng giao diện frontend web (`frontend/`) cho **Bảng điều khiển vận hành tự động (Automation Ops Dashboard)**.
+* Xây dựng các widget điều khiển tương tác hiển thị sức khỏe đường ống tự động hóa, số lượt gọi dịch vụ, biểu đồ độ trễ xử lý, bảng cảnh báo an ninh thời gian thực và chỉ số chi phí Free Tier.
 
-### Mục tiêu tuần 11:
+### Các công việc triển khai trong tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Khởi tạo dự án ứng dụng React sử dụng Vite (`npx create-vite@latest frontend --template react`).<br>- Thiết kế hệ thống giao diện CSS hiện đại, typography, bảng màu dark mode và bố cục responsive flex/grid. | 24/08/2026 | 24/08/2026 | <https://000079.awsstudygroup.com> |
+| 3 | - Phát triển các Component Status Card nòng cốt:<br>&emsp;+ `PipelineStatusWidget`: Hiển thị trạng thái sức khỏe hệ thống (Healthy / Degraded / Down).<br>&emsp;+ `CostTrackerWidget`: Hiển thị chi phí AWS hiện tại so với hạn mức ngân sách $0 Free Tier. | 25/08/2026 | 25/08/2026 | React Component Architecture |
+| 4 | - Phát triển các Component Biểu đồ Chỉ số:<br>&emsp;+ `LatencyChart`: Biểu đồ đường thể hiện thời gian thực thi Lambda & độ trễ xử lý hàng đợi SQS.<br>&emsp;+ `InvocationChart`: Biểu đồ cột thể hiện lưu lượng sự kiện trong 24 giờ. | 26/08/2026 | 26/08/2026 | Charting Library Integration |
+| 5 | - Phát triển Component Bảng Cảnh báo An ninh Thời gian thực:<br>&emsp;+ `AlertFeedTable`: Bảng dữ liệu tương tác hiển thị danh sách cảnh báo lấy từ API `/api/alerts`.<br>&emsp;+ Tính năng: badge màu phân cấp mức độ nghiêm trọng, tìm kiếm từ khóa, pop-up xem chi tiết CloudTrail JSON audit. | 27/08/2026 | 27/08/2026 | Data Table & Modal UI |
+| 6 | - Tích hợp React frontend với các API backend Flask/FastAPI (`http://localhost:5000/api`).<br>- Thêm cơ chế tự động làm mới dữ liệu sau mỗi 30 giây.<br>- Kiểm chứng đóng gói ứng dụng web thành công (`npm run build`). | 28/08/2026 | 28/08/2026 | Web App Testing & Build |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Kết quả đạt được Tuần 11
 
-
-### Kết quả đạt được tuần 11:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Xây dựng thành công giao diện web dashboard dark-mode hiện đại bằng React trong thư mục `frontend/`.
+* Triển khai thành công các biểu đồ trực quan hóa dữ liệu động theo dõi lưu lượng và độ trễ xử lý hệ thống serverless.
+* Tích hợp bảng danh sách cảnh báo thời gian thực hiển thị dữ liệu sự kiện an ninh lấy trực tiếp từ Amazon DynamoDB.
+* Kết nối mượt mà React frontend với API backend Python, hỗ trợ cơ chế tự động cập nhật dữ liệu telemetry sau mỗi 30 giây.
+* Kiểm chứng giao diện hiển thị tối ưu và phản hồi mượt mà trên cả màn hình máy tính và thiết bị di động.

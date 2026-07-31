@@ -1,57 +1,30 @@
 ---
 title: "Week 11 Worklog"
 date: 2024-01-01
-weight: 2
+weight: 11
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 11 Objectives
 
+* Learn frontend component design, state management (`useState`, `useEffect`), REST API consumption (`fetch` / `axios`), and chart visualization libraries.
+* Build the frontend interface (`frontend/`) for the **Automation Ops Dashboard**.
+* Construct interactive dashboard widgets displaying real-time serverless pipeline health, invocation counts, processing latency charts, live security alert feed, and Free Tier cost monitors.
 
-### Week 11 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Initialize React application project using Vite (`npx create-vite@latest frontend --template react`).<br>- Configure modern CSS design system, typography, dark mode palette, and responsive flex/grid layouts. | 08/24/2026 | 08/24/2026 | <https://000079.awsstudygroup.com> |
+| Tue | - Develop Core Status Card Components:<br>&emsp;+ `PipelineStatusWidget`: Displays live health status (Healthy / Degraded / Down).<br>&emsp;+ `CostTrackerWidget`: Displays current AWS spend vs. $0 free tier budget. | 08/25/2026 | 08/25/2026 | React Component Architecture |
+| Wed | - Develop Metric Charting Components:<br>&emsp;+ `LatencyChart`: Line graph rendering Lambda execution duration & SQS processing latency.<br>&emsp;+ `InvocationChart`: Bar chart showing event throughput over 24 hours. | 08/26/2026 | 08/26/2026 | Charting Library Integration |
+| Thu | - Develop Live Security Alert Table Component:<br>&emsp;+ `AlertFeedTable`: Interactive data table rendering live alerts fetched from `/api/alerts`.<br>&emsp;+ Features: severity color badges, keyword search, modal popups for full CloudTrail JSON audit detail. | 08/27/2026 | 08/27/2026 | Data Table & Modal UI |
+| Fri | - Wire React frontend to Flask/FastAPI backend API endpoints (`http://localhost:5000/api`).<br>- Add auto-refresh polling interval (every 30 seconds).<br>- Validate full web application build (`npm run build`). | 08/28/2026 | 08/28/2026 | Web App Testing & Build |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 11 Achievements
 
-
-### Week 11 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Built a state-of-the-art dark-themed web dashboard UI using React under `frontend/`.
+* Implemented dynamic data visualization charts for serverless invocation throughput and processing latency.
+* Integrated live alert feed table rendering security events directly from Amazon DynamoDB.
+* Connected React frontend seamlessly to Python backend APIs with automated 30-second telemetry polling.
+* Verified responsive layout and smooth UI performance across desktop and mobile viewports.

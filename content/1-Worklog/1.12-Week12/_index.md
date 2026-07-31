@@ -1,57 +1,31 @@
 ---
 title: "Week 12 Worklog"
 date: 2024-01-01
-weight: 2
+weight: 12
 chapter: false
 pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 12 Objectives
 
+* Perform comprehensive end-to-end integration testing across both detection pipelines: Elastic SIEM log correlation and Serverless push alert routing.
+* Conduct strict financial audit verifying near-zero ($0) AWS billing spend across all 12 weeks.
+* Finalize all technical documentation, architecture diagrams (`architecture.png`, `cloud-architecture.png`), scenario execution guides, self-evaluations, and internship portfolio write-ups.
+* Present final project deliverables to the First Cloud AI Journey (FCAJ) internship evaluation panel.
 
-### Week 12 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Conduct full end-to-end system testing:<br>&emsp;+ Execute full suite of 12 attack scenarios (7 Endpoint + 5 AWS Cloud).<br>&emsp;+ Verify dual alert notifications: instant SNS email alert (~2s) and deep SIEM log correlation rule (~5 min).<br>&emsp;+ Verify live metrics rendered accurately on the Automation Ops Dashboard. | 08/31/2026 | 08/31/2026 | End-to-End Integration Test Suite |
+| Tue | - Conduct AWS Financial Audit:<br>&emsp;+ Inspect AWS Cost Explorer and CloudWatch Billing Alarms.<br>&emsp;+ Verify total AWS spend across the entire project lifecycle remained $0 (with zero paid GuardDuty or Config recording charges). | 09/01/2026 | 09/01/2026 | <https://000007.awsstudygroup.com> |
+| Wed | - Embed high-resolution architecture diagrams (`architecture.png` for Windows lab and `cloud-architecture.png` for AWS pipeline) into project documentation.<br>- Complete proposal revisions in Section 7 (Timeline) and Section 10 (Expected Outcomes).<br>- Refine Module 5.2 Prerequisites documentation: clarify honest VM ELK architecture, separate victim VM vs host machine roles, and streamline required tool version tables. | 09/02/2026 | 09/02/2026 | Documentation Management |
+| Thu | - Author internship self-evaluation report (`content/6-Self-evaluation/`).<br>- Review student feedback documentation (`content/7-Feedback/`).<br>- Perform Hugo documentation build test (`hugo`) to confirm clean rendering across all pages. | 09/03/2026 | 09/03/2026 | <https://cloudjourney.awsstudygroup.com/8-fcjworkforce/> |
+| Fri | - Deliver final technical project presentation to FCAJ mentors.<br>- Publish final SOC Documentation Portal codebase.<br>- Successfully conclude the FCAJ Internship Program. | 09/04/2026 | 09/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 12 Achievements
 
-
-### Week 12 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Validated end-to-end integration and dual-alerting reliability across all 12 security threat scenarios.
+* Proven strict financial discipline: maintained $0 total AWS spend for the complete 12-week project lifecycle.
+* Published complete portfolio documentation including 12 scenario walkthroughs, 4 threat hunt reports, 1 GuardDuty comparative analysis, Terraform module repository, full-stack Ops Dashboard codebase, and streamlined Module 5.2 workshop prerequisites.
+* Embedded high-quality architecture diagrams into the published SOC documentation portal.
+* Successfully completed the First Cloud AI Journey (FCAJ) internship program with distinction.

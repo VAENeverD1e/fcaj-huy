@@ -1,57 +1,31 @@
 ---
 title: "Week 6 Worklog"
 date: 2024-01-01
-weight: 1
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+### Week 6 Objectives
 
+* Understand Amazon DynamoDB NoSQL key-value database concepts: partition keys, sort keys, secondary indexes, read/write capacity modes (Pay-Per-Request / Provisioned Free Tier), and Time To Live (TTL).
+* Extend the Lambda enrichment function to store all triggered security alert records into DynamoDB for audit trail logging and UI dashboard querying.
+* Master Amazon CloudWatch Monitoring: Custom Metrics, Metric Filters, CloudWatch Alarms, and notification triggers.
+* Establish operational monitoring and cost guardrails for the serverless automation pipeline.
 
-### Week 6 Objectives:
+### Tasks Carried Out This Week
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| Mon | - Deep dive into Amazon DynamoDB NoSQL architecture.<br>- Provision DynamoDB table (`SecurityAlerts`) with `AlertID` (Partition Key) and `Timestamp` (Sort Key).<br>- Enable Time To Live (TTL) attribute (`ttl_expiry`) set to 90 days for automatic free-tier storage retention management. | 07/20/2026 | 07/20/2026 | <https://000060.awsstudygroup.com> |
+| Tue | - Update Lambda function (`soc-alert-enricher`) using Boto3 `dynamodb.put_item()` to record every processed alert into the `SecurityAlerts` table.<br>- Include rich metadata: severity score, attacker IP, AWS account ID, raw event JSON, and remediation advice. | 07/21/2026 | 07/21/2026 | <https://000060.awsstudygroup.com> |
+| Wed | - Study Amazon CloudWatch Metrics, Alarms, and Metric Filters.<br>- Create CloudWatch Metric Filter over SQS queue log streams to monitor message processing rates and DLQ counts. | 07/22/2026 | 07/22/2026 | <https://000008.awsstudygroup.com> |
+| Thu | - Configure CloudWatch Alarms:<br>&emsp;+ `SQSQueueDepthAlarm`: Triggers if SQS queue depth exceeds 500 messages (detecting SIEM ingestion lag).<br>&emsp;+ `LambdaErrorAlarm`: Triggers on Lambda function execution failures.<br>&emsp;+ `FreeTierBudgetAlarm`: Monitors forecasted monthly billing. | 07/23/2026 | 07/23/2026 | <https://000036.awsstudygroup.com> |
+| Fri | - Test parallel dual-alerting architecture: verified that attack simulations simultaneously trigger instant SNS alerts, write persistent DynamoDB log records, and ingest into Elastic SIEM.<br>- Verify metrics in CloudWatch console. | 07/24/2026 | 07/24/2026 | End-to-End Pipeline Testing |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Week 6 Achievements
 
-
-### Week 6 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Gained practical experience in NoSQL database design with Amazon DynamoDB and automated data lifecycle retention (TTL).
+* Built a persistent security alert datastore recording enriched threat telemetry in DynamoDB.
+* Configured CloudWatch Alarms ensuring operational health monitoring for Lambda execution and SQS queue depths.
+* Validated the complete dual-alerting architecture: near-real-time serverless path (~2s push) running alongside deep SIEM correlation (~5min poll).
+* Kept all resources strictly within AWS Free Tier limits (25 GB free DynamoDB storage, 10 free CloudWatch alarms).

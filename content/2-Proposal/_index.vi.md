@@ -1,108 +1,115 @@
 ---
 title: "Bản đề xuất"
-date: 2024-01-01
+date: 2026-07-30
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+# Hệ thống Giám sát An toàn Thông tin & Phản ứng Tự động Cloud-Native
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+## Phát hiện Mối đe dọa & Tự động hóa Ứng phó Sự cố An ninh Đám mây trên AWS
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+### 1. Tóm tắt Điều hành
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+Dự án này xây dựng một **Nền tảng Giám sát An toàn Thông tin & Phản ứng Tự động Cloud-Native** chuẩn doanh nghiệp trên hạ tầng đám mây AWS. Được thiết kế nhằm giải quyết triệt để khoảng trống độ trễ trong quản lý sự cố an ninh cloud, nền tảng tự động thu thập telemetry bảo mật trên hạ tầng AWS, điều hướng và xử lý các sự kiện mối đe dọa nghiêm trọng theo thời gian thực bằng công nghệ serverless (độ trễ < 10 giây), ghi log audit sự cố vào cơ sở dữ liệu vận hành, hỗ trợ truy tìm mối đe dọa bằng SQL serverless trên kho log S3, cũng như đánh giá các dịch vụ bảo mật hàng đầu của AWS (**AWS GuardDuty** & **IAM Access Analyzer**).
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Hệ thống bao phủ các kịch bản tấn công cloud rủi ro cao được ánh xạ theo chuẩn **MITRE ATT&CK** (như leo thang quyền hạn IAM, tạo tài khoản backdoor, công khai S3 storage bucket và exfiltration dữ liệu hàng loạt). Tuân thủ nghiêm ngặt **Chính sách Kiểm soát Chi phí Zero-Spend ($0.00 spend)** qua AWS Free Tier và gói dùng thử có kiểm soát, toàn bộ hạ tầng đám mây được tự động hóa 100% bằng **Hạ tầng dưới dạng Mã (Terraform)**. Ngoài ra, hệ thống cung cấp giao diện tích hợp bất đồng bộ qua **Amazon SQS** phục vụ cho các Trung tâm Vận hành An toàn Thông tin (SOC) của doanh nghiệp.
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+### 2. Tuyên bố Vấn đề
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+**Dịch chuyển lên Cloud làm thay đổi mặt trận tấn công — và kẻ tấn công khai thác sự bùng nổ lệnh API để ẩn mình.**
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+Khi các doanh nghiệp dịch chuyển hạ tầng, lưu trữ và định danh lên AWS, các hàng rào bảo mật truyền thống không còn hiệu quả. Tấn công môi trường cloud hiếm khi đòi hỏi các mã khai thác lỗ hổng phức tạp; thay vào đó, kẻ tấn công khai thác access key bị rò rỉ, mật khẩu console bị phished hoặc tài khoản IAM bị phân thừa quyền để thực thi các lệnh API quản trị.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+Chuỗi tấn công cloud điển hình diễn ra rất nhanh chóng:
+1. **Truy cập Ban đầu (Initial Access)**: Kẻ tấn công có được access key hoặc thông tin xác thực IAM.
+2. **Thăm dò (Reconnaissance)**: Thực thi âm thầm các lệnh liệt kê IAM (`ListUsers`, `ListRoles`, `GetAccountAuthorizationDetails`) để thu thập sơ đồ phân quyền.
+3. **Duy trì Truy cập & Leo thang Quyền (Persistence & Privilege Escalation)**: Tạo tài khoản IAM backdoor (`CreateUser`) và lập tức gán quyền quản trị tối cao (`AttachUserPolicy` với `AdministratorAccess`).
+4. **Trích xuất / Công khai Dữ liệu (Exfiltration / Exposure)**: Tải dữ liệu nhạy cảm hàng loạt từ S3 bucket (`GetObject`) hoặc sửa đổi chính sách bucket (`PutBucketPolicy`) để công khai dữ liệu ra ngoài Internet (`Principal: *`).
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+Vì mỗi lệnh API đơn lẻ rất giống với thao tác quản trị hàng ngày, luồng thu thập log SIEM theo lô truyền thống (gây độ trễ từ 5 đến 15 phút) khiến nhóm an ninh hoàn toàn bị động. Bài toán cốt lõi là phải xây dựng một kiến trúc có khả năng **bắt chính xác các mẫu hành vi nguy hiểm tức thì (<10 giây)**, kích hoạt thông báo tự động, lưu trữ nhật ký kiểm toán bất biến và dễ dàng tích hợp với hệ thống SOC doanh nghiệp sẵn có.
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+### 3. Kiến trúc Giải pháp & Quy trình Vận hành
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+Nền tảng triển khai luồng phát hiện mối đe dọa và tự động khắc phục sự cố native trên AWS kết hợp với động cơ so sánh đánh giá SIEM luồng kép:
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+```mermaid
+graph TD
+    subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
+        API["Log Audit AWS CloudTrail"] --> EB["Amazon EventBridge"]
+        GD["Cảnh báo AWS GuardDuty ML"] --> EB
+        SH["AWS Security Hub (CIS Benchmark)"] --> EB
+        EB --> SF["Bộ Phối hợp AWS Step Functions"]
+        SF --> LMD["AWS Lambda Tự động Khắc phục"]
+        LMD --> SNS["Amazon SNS Cảnh báo Quản trị"]
+        LMD --> DDB["Bảng Kiểm toán Amazon DynamoDB"]
+        LMD --> ACT["Tự động Phản ứng (Revert S3 / Contain IAM SecurityDenyAll)"]
+        API --> S3["Bucket Log Trung tâm Amazon S3"] --> ATH["Amazon Athena (Truy tìm Mối đe dọa bằng SQL)"]
+    end
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+    subgraph DualIngest["Động cơ Ingestion Luồng kép & So sánh Đánh giá SIEM"]
+        S3 --> SQS["Amazon SQS Queue"] --> EA["Elastic Agent / Fleet"] --> SIEM["Elastic SIEM (Kibana)"]
+        SIEM -.-> BENCH["Ma trận So sánh Phát hiện (detection-comparison.md)"]
+    end
+```
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+#### Các bước Vận hành Chi tiết
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+1. **Luồng AWS Native Detect-Decide-Act**:
+   - **Thu thập API & Điều hướng Sự kiện**: AWS CloudTrail ghi lại các thao tác API trên mọi region. **Amazon EventBridge** khớp các mẫu sự kiện rủi ro cao (`PutBucketPolicy`, `CreateUser` kèm gán quyền admin) và các cảnh báo học máy từ **AWS GuardDuty**.
+   - **Phối hợp Quy trình bằng Step Functions**: EventBridge kích hoạt **AWS Step Functions** (`soc-detection-orchestrator`), bổ sung ngữ cảnh sự kiện và điều hướng luồng quyết định.
+   - **Tự động Khắc phục Sự cố (Auto-Remediation)**: **AWS Lambda** tự động khắc phục vi phạm dưới 5 giây — ví dụ: kích hoạt lại `s3:PutPublicAccessBlock` hoặc gán chính sách `SecurityDenyAll` để cô lập ngay tài khoản IAM backdoor.
+   - **Kiểm toán & Dashboard Vận hành**: Nhật ký thực thi lưu trữ vào **Amazon DynamoDB** (`automation-pipeline-events`), phát cảnh báo qua **Amazon SNS** và cập nhật tức thì lên **Ops Dashboard**.
+   - **Truy tìm Mối đe dọa bằng SQL Athena**: **Amazon Athena** thực thi các truy vấn SQL chuẩn ANSI trực tiếp trên kho log CloudTrail S3 mà không cần quản lý cụm tìm kiếm.
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+2. **Luồng kép Ingestion & So sánh Benchmark**:
+   - Log CloudTrail liên tục đẩy về S3 và được xếp hàng chờ qua **Amazon SQS** để đẩy vào **Elastic SIEM**.
+   - Cả hai cơ chế phát hiện (serverless native AWS vs. luật KQL tùy biến trên Elastic) hoạt động song song, cung cấp dữ liệu thực nghiệm cho ma trận đánh giá độ trễ và độ chính xác (`detection-comparison.md`).
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+---
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+#### 4. Danh mục Dịch vụ AWS & Lý do Kỹ thuật
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+| Dịch vụ AWS | Vai trò Kiến trúc | Chính sách Chi phí | Lý do Kỹ thuật & Lựa chọn |
+| :--- | :--- | :--- | :--- |
+| **AWS CloudTrail** | Thu thập Log Audit API Đa Region | Free Tier (Management events) | Nhật ký kiểm toán native ghi nhận toàn bộ các lệnh management và data event. |
+| **Amazon S3** | Kho Lưu trữ Log Trung tâm | Free Tier | Kho lưu trữ log bất biến, mã hóa SSE-S3 tại chỗ với chi phí duy trì $0 khi chờ. |
+| **Amazon EventBridge** | Bộ Điều hướng Sự kiện Thời gian thực | Free Tier | Khớp mẫu JSON dưới 1 giây cho các sự kiện CloudTrail và cảnh báo GuardDuty. |
+| **AWS Step Functions** | Phối hợp Quy trình Tự động (Orchestration) | Free Tier | State machine phối hợp luồng sự kiện (`Detect -> Enrich -> Decide -> Remediate`). |
+| **AWS Lambda** | Xử lý & Tự động Khắc phục Sự cố | Free Tier | Thực thi Python serverless để hủy policy S3 công khai, cô lập tài khoản IAM rủi ro và ghi log DynamoDB. |
+| **Amazon SNS** | Phân phối Thông báo Đa kênh | Free Tier | Gửi email cảnh báo bảo mật trực tiếp đến hộp thư quản trị viên tức thì. |
+| **Amazon DynamoDB** | Cơ sở Dữ liệu Audit Telemetry | Free Tier | Cơ sở dữ liệu key-value độ trễ thấp lưu lịch sử cảnh báo với chi phí duy trì $0. |
+| **Amazon Athena** | Truy vấn Log SQL Serverless | Pay-per-query ($0 khi chờ) | Truy vấn SQL chuẩn ANSI trên log S3 thô mà không cần quản lý máy chủ tìm kiếm. |
+| **Amazon SQS** | Hàng chờ Đệm Tích hợp SOC | Free Tier | Hấp thụ bùng nổ log và cung cấp giao diện trích xuất bất đồng bộ cho SOC ngoài. |
+| **Amazon CloudWatch** | Giám sát Hạ tầng & Cảnh báo | Free Tier | Theo dõi hoạt động S3, metric lỗi thực thi của Lambda và hàng chờ lỗi SQS DLQ. |
+| **AWS GuardDuty** | Phát hiện Mối đe dọa bằng ML | 30 ngày Free Trial | Phát hiện bất thường bằng ML, so sánh đối chiếu với các quy tắc EventBridge. |
+| **AWS Security Hub** | Quản lý Tuân thủ Benchmark | 30 ngày Free Trial | Quản lý tuân thủ tự động theo chuẩn CIS AWS Foundations Benchmark với Config recorder được giới hạn phạm vi. |
+| **IAM Access Analyzer** | Phân tích Cấu hình Public Access | Luôn miễn phí | Phân tích chứng minh logic tĩnh phát hiện công khai S3 bucket policy trái phép. |
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+---
+
+### 5. Lộ trình Triển khai Kỹ thuật
+
+1. **Hạ tầng dưới dạng Mã (Terraform)**: Toàn bộ tài nguyên AWS được tự động hóa bằng kịch bản Terraform (`cloudtrail.tf`, `eventbridge.tf`, `lambda.tf`, `guardduty.tf`, `dynamodb.tf`, `s3.tf`, `sqs.tf`, `sns.tf`, `cloudwatch.tf`).
+2. **Đường ống Serverless SOAR**: Triển khai mã Lambda Python với quyền hạn tối thiểu PoLP (`dynamodb:PutItem`, `sns:Publish`) để xử lý sự kiện JSON.
+3. **Mô phỏng Tấn công & Kiểm thử**: Thực thi 5 kịch bản tấn công AWS (thăm dò IAM, tạo backdoor user, leo thang quyền, sửa S3 policy, exfiltration dữ liệu) để xác nhận cảnh báo dưới 10 giây.
+4. **Truy tìm Mối đe dọa Athena SQL**: Thiết lập schema bảng DDL trên kho log S3 CloudTrail để thực thi các câu lệnh SQL threat hunting.
+5. **Đánh giá So sánh GuardDuty ML**: So sánh kết quả từ GuardDuty với quy tắc EventBridge về độ trễ, khả năng tùy biến và gánh nặng bảo trì.
+6. **Dashboard Vận hành Tự động**: Triển khai giao diện web (React + FastAPI + DynamoDB) theo dõi sức khỏe đường ống và độ trễ thực thi.
+
+---
+
+### 6. Quản lý Rủi ro & Kiểm soát Chi phí
+
+- **Hạn mức Chi phí**: Cấu hình cảnh báo AWS Zero-Spend Budget với ngưỡng **$0.01** gửi trực tiếp về email root.
+- **Quản lý Trial GuardDuty**: Đặt lịch hủy GuardDuty detector vào Ngày 25 dùng thử, đảm bảo tổng chi phí AWS duy trì **$0.00**.
+- **Độ tin cậy Luồng dữ liệu**: Cấu hình SQS Dead-Letter Queue (DLQ) và cảnh báo CloudWatch Alarm theo dõi lỗi thực thi.
+
+---
+
+### 7. Kết quả Kỳ vọng
+
+- **Nền tảng Bảo mật Cloud-Native Complete**: Hệ thống bảo mật hướng sự kiện trên AWS hoạt động hoàn chỉnh, cung cấp cảnh báo dưới 10 giây, phân tích SQL log và ML threat detection.
+- **Triển khai IaC 100% bằng Terraform**: Khởi tạo (`terraform apply`) và dọn dẹp tài nguyên (`terraform destroy`) bằng một lệnh duy nhất.
+- **Tích hợp SOC Doanh nghiệp Đa Đám mây**: Giao diện SQS tách biệt kết nối dữ liệu telemetry an toàn đám mây AWS với các hệ thống SOC/SIEM doanh nghiệp ngoài.

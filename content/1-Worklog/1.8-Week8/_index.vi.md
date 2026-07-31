@@ -1,59 +1,32 @@
 ---
 title: "Worklog Tuần 8"
 date: 2024-01-01
-weight: 1
+weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Mục tiêu Tuần 8
 
+* Hiểu các khái niệm phát hiện đe dọa managed của AWS GuardDuty: Nguồn tri thức đe dọa (threat intelligence), phát hiện bất thường bằng máy học, S3 Protection và các loại cảnh báo GuardDuty.
+* Bật GuardDuty detector trong thời gian dùng thử 30 ngày (Free Trial) với lịch nhắc nhở tắt tự động để đảm bảo không phát sinh chi phí.
+* Tích hợp cảnh báo GuardDuty với EventBridge để chuyển tiếp JSON payload cảnh báo vào luồng tự động hóa serverless.
+* Chạy lại 5 kịch bản tấn công Cloud để đánh giá kết quả phát hiện của GuardDuty so với các quy tắc KQL tùy chỉnh trên SIEM.
+* Viết báo cáo đánh giá so sánh chuyên sâu (`guardduty-comparison.md`) phân tích độ trễ phát hiện, phạm vi quan sát và bài toán chi phí.
 
-### Mục tiêu tuần 8:
+### Các công việc triển khai trong tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Nghiên cứu kiến trúc AWS GuardDuty, các dạng cảnh báo (`Recon:IAMUser`, `Persistence:IAMUser`, `Exfiltration:S3`) và cơ chế S3 Protection.<br>- Bật GuardDuty detector ở chế độ trial với lịch ghi nhớ tắt dịch vụ rõ ràng. | 03/08/2026 | 03/08/2026 | <https://000098.awsstudygroup.com> |
+| 3 | - Tạo EventBridge Event Rule lọc sự kiện cảnh báo GuardDuty (`aws.guardduty`).<br>- Gán target tới hàm Lambda để phân tích và làm giàu payload cảnh báo GuardDuty đẩy về SNS/DynamoDB. | 04/08/2026 | 04/08/2026 | <https://000018.awsstudygroup.com> |
+| 4 | - Tái thực thi Kịch bản Tấn công Cloud 8–12:<br>&emsp;+ Đăng nhập Root không MFA<br>&emsp;+ Dò quét quyền IAM<br>&emsp;+ Tạo persistence key IAM<br>&emsp;+ Rút dữ liệu S3 & công khai bucket.<br>- Ghi nhận mốc thời gian phát hiện giữa Elastic SIEM (KQL) và GuardDuty. | 05/08/2026 | 05/08/2026 | Cloud Attack Simulation Suite |
+| 5 | - Thu thập dữ liệu đánh giá thực nghiệm:<br>&emsp;+ Độ trễ KQL tùy chỉnh: ~4–13 phút SIEM poll.<br>&emsp;+ Giới hạn baseline của GuardDuty: Do bật GuardDuty muộn (ngày 26/07), dịch vụ chỉ mới hoạt động ~3 ngày trước khi thử nghiệm (29–30/07). Do đó, GuardDuty chưa có đủ thời gian tích lũy baseline cho các bộ phát hiện bất thường (IAM recon, IAM persistence, S3 exfiltration), trong khi phát hiện dạng chữ ký (`Policy:S3/BucketAnonymousAccessGranted`) vẫn báo động nhanh chóng sau ~6.7 phút.<br>&emsp;+ Bài toán chi phí: Quy tắc KQL dựa trên SQS/Lambda Free Tier ($0); GuardDuty chuyển sang tính phí sau khi hết trial. | 06/08/2026 | 06/08/2026 | Empirical Testing Data |
+| 6 | - Viết báo cáo đánh giá so sánh (`guardduty-comparison.md`).<br>- Chủ động tắt GuardDuty detector và S3 Protection trước khi hết hạn trial để giữ nguyên chi phí AWS ở mức $0. | 07/08/2026 | 07/08/2026 | <https://000098.awsstudygroup.com> |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Kết quả đạt được Tuần 8
 
-
-### Kết quả đạt được tuần 8:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Tích hợp thành công dịch vụ phát hiện đe dọa tự động AWS GuardDuty vào luồng cảnh báo serverless qua EventBridge.
+* Thực hiện so sánh đối chứng thực nghiệm giữa các quy tắc KQL tùy chỉnh và cảnh báo tự động của AWS GuardDuty.
+* Đánh giá thực nghiệm cơ chế phát hiện: Ghi nhận việc bật GuardDuty muộn (26/07) khiến các bộ phát hiện bất thường bằng máy học (ML) chưa có đủ dữ liệu baseline để cảnh báo các kịch bản hành vi, qua đó làm nổi bật ưu thế của luật KQL tùy chỉnh trên SIEM trong việc cảnh báo tức thì mà không cần thời gian học baseline.
+* Hoàn thành báo cáo phân tích so sánh chuyên sâu `guardduty-comparison.md`.
+* Đảm bảo kỷ luật chi phí nghiêm ngặt khi chủ động tắt GuardDuty trước khi hết trial, duy trì chi phí AWS ở mức $0.

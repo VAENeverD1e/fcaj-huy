@@ -1,59 +1,32 @@
 ---
 title: "Worklog Tuần 5"
 date: 2024-01-01
-weight: 1
+weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Mục tiêu Tuần 5
 
+* Hiểu các nguyên lý kiến trúc hướng sự kiện trên AWS (Event-Driven Architecture): Event producer, event bus, event rule và target.
+* Nắm vững cách tạo luật Amazon EventBridge bằng cú pháp JSON event pattern lọc sự kiện an ninh CloudTrail.
+* Tìm hiểu mô hình thực thi serverless AWS Lambda, IAM execution role, biến môi trường và tích hợp thư viện Python Boto3 SDK.
+* Tìm hiểu dịch vụ nhắn tin Amazon SNS: Tạo topic, cấu hình chính sách truy cập, đăng ký nhận cảnh báo qua email/HTTP webhook và định dạng tin nhắn.
+* Thiết kế đường ống phát cảnh báo thời gian thực dạng serverless: EventBridge → Lambda → SNS.
 
-### Mục tiêu tuần 5:
+### Các công việc triển khai trong tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Nghiên cứu kiến trúc AWS EventBridge, custom event bus và cú pháp JSON event pattern.<br>- Tạo Amazon SNS Topic (`soc-security-alerts-topic`) và đăng ký endpoint nhận tin qua email/webhook. | 13/07/2026 | 13/07/2026 | <https://000077.awsstudygroup.com> |
+| 3 | - Viết các EventBridge Event Rule lọc các sự kiện CloudTrail quan trọng:<br>&emsp;+ Đăng nhập tài khoản Root không có MFA<br>&emsp;+ Chỉnh sửa chính sách IAM (`AttachUserPolicy`, `PutUserPolicy`)<br>&emsp;+ Các nỗ lực truy cập không hợp lệ (`UnauthorizedOperation`). | 14/07/2026 | 14/07/2026 | <https://000054.awsstudygroup.com> |
+| 4 | - Tìm hiểu cách triển khai AWS Lambda, môi trường Python runtime và IAM execution role (`LambdaSOCAlertExecutionRole`).<br>- Viết hàm Lambda (`soc-alert-enricher`) sử dụng Boto3 để đọc dữ liệu event payload từ EventBridge. | 15/07/2026 | 15/07/2026 | <https://000022.awsstudygroup.com> |
+| 5 | - Xây dựng logic làm giàu dữ liệu trong Lambda: trích xuất IP gọi API, AWS account ID, loại user, thời gian và hành động API.<br>- Cấu hình Lambda định dạng tin nhắn dễ đọc và xuất trực tiếp tới SNS Topic qua Boto3. | 16/07/2026 | 16/07/2026 | <https://000022.awsstudygroup.com> |
+| 6 | - Gán EventBridge rule chuyển dữ liệu tới target là hàm Lambda.<br>- Chạy thử nghiệm các kịch bản tấn công Cloud để kiểm tra việc nhận cảnh báo thời gian thực.<br>- Đo lường độ trễ đường ống: đạt mức phát cảnh báo gần như tức thì (~2–5 giây). | 17/07/2026 | 17/07/2026 | Serverless Pipeline Testing |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Kết quả đạt được Tuần 5
 
-
-### Kết quả đạt được tuần 5:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Thành thạo mô hình kiến trúc hướng sự kiện với Amazon EventBridge và AWS Lambda serverless.
+* Cấu hình thành công dịch vụ phát tin Amazon SNS gửi cảnh báo an ninh tức thì.
+* Lập trình hàm Python Lambda phân tích và bổ sung ngữ cảnh cho dữ liệu log audit CloudTrail JSON.
+* Xây dựng luồng cảnh báo serverless với độ trễ dưới 5 giây, hoạt động song song với luồng phân tích chuyên sâu trên SIEM (~5 phút).
+* Đảm bảo 100% tuân thủ hạn mức Free Tier (nằm trong ngưỡng 1 triệu yêu cầu Lambda và 100.000 tin nhắn SNS miễn phí mỗi tháng).

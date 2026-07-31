@@ -5,11 +5,6 @@ weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
-
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
-
 # Summary Report: “GenAI-powered App-DB Modernization workshop”
 
 ### Event Objectives
@@ -99,28 +94,34 @@ Migrating to a modular system — each function is an **independent service** co
 Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
 
 #### Learning from highly skilled speakers
+
 - Experts from AWS and major tech organizations shared **best practices** in modern application design.  
 - Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
 
 #### Hands-on technical exposure
+
 - Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
 - Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
 - Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
 
 #### Leveraging modern tools
+
 - Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
 - Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
 
 #### Networking and discussions
+
 - The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
 - Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
 
 #### Lessons learned
+
 - Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
 - Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
 - AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
 
 #### Some event photos
+
 *Add your event photos here*  
 
 > Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.

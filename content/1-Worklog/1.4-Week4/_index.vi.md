@@ -1,59 +1,32 @@
 ---
 title: "Worklog Tuần 4"
 date: 2024-01-01
-weight: 1
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+### Mục tiêu Tuần 4
 
+* Phân tích cấu trúc JSON của sự kiện CloudTrail (`userIdentity`, `eventName`, `eventSource`, `requestParameters`, `sourceIPAddress`).
+* Tìm hiểu các kỹ thuật tấn công Cloud, ma trận MITRE ATT&CK cho Cloud.
+* Thực thi 5 kịch bản mô phỏng tấn công Cloud thực tế sử dụng tài khoản IAM thử nghiệm (`lab-attacker`).
+* Phát triển các quy tắc phát hiện KQL tùy chỉnh trên Elastic SIEM để phát hiện hành vi tấn công Cloud theo thời gian thực.
+* Xác minh quy trình dọn dẹp môi trường tự động để khôi phục trạng thái an toàn ngay sau khi thử nghiệm.
 
-### Mục tiêu tuần 4:
+### Các công việc triển khai trong tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Nghiên cứu tài liệu ma trận MITRE ATT&CK Cloud.<br>- Tạo tài khoản IAM thử nghiệm (`lab-attacker`) và khởi tạo access key phục vụ tấn công.<br>- Phân tích chi tiết cấu trúc log sự kiện xác thực và gọi API trong CloudTrail. | 06/07/2026 | 06/07/2026 | <https://000044.awsstudygroup.com><br>MITRE ATT&CK Cloud Matrix |
+| 3 | - Thực thi Kịch bản Tấn công Cloud 8: Đăng nhập tài khoản AWS Root không có MFA.<br>- Thực thi Kịch bản Tấn công Cloud 9: Dò quét quyền hạn IAM & Liệt kê chính sách (`GetAccountSummary`, `ListUsers`, `ListRoles`). | 07/07/2026 | 07/07/2026 | <https://000011.awsstudygroup.com> |
+| 4 | - Thực thi Kịch bản Tấn công Cloud 10: Tạo backdoor duy trì quyền truy cập IAM (tạo access key ẩn `CreateAccessKey` và gán quyền admin `AttachUserPolicy`).<br>- Thực thi Kịch bản Tấn công Cloud 11: Trích xuất dữ liệu S3 số lượng lớn (`GetObject` trên các bucket nhạy cảm). | 08/07/2026 | 08/07/2026 | <https://000069.awsstudygroup.com> |
+| 5 | - Thực thi Kịch bản Tấn công Cloud 12: Cấu hình công khai S3 bucket (thay đổi ACL / gỡ bỏ Block Public Access qua `PutBucketAcl` / `DeletePublicAccessBlock`).<br>- Chạy kịch bản dọn dẹp tự động để khôi phục lại quyền hạn ban đầu. | 09/07/2026 | 09/07/2026 | <https://000030.awsstudygroup.com> |
+| 6 | - Truy vấn log CloudTrail trên Elastic SIEM để xác định chữ ký audit của từng API call.<br>- Xây dựng, thử nghiệm và tối ưu 5 quy tắc phát hiện KQL tùy chỉnh cho đăng nhập Root, dò quét IAM, tạo credential ẩn, rút dữ liệu S3 và công khai bucket S3. | 10/07/2026 | 10/07/2026 | Elastic Security Rule Engine |
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Kết quả đạt được Tuần 4
 
-
-### Kết quả đạt được tuần 4:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hiểu rõ cấu trúc dữ liệu log audit CloudTrail JSON và chữ ký API tương ứng của từng hành vi.
+* Mô phỏng thành công 5 kịch bản tấn công Cloud bao gồm chiếm dụng quyền đăng nhập, dò quét IAM, duy trì truy cập và rút dữ liệu S3.
+* Xây dựng 5 quy tắc phát hiện KQL tùy chỉnh chất lượng cao trên Elastic SIEM với tỷ lệ cảnh báo giả rất thấp.
+* Xác minh thành công quy trình khôi phục môi trường an toàn sau khi thử nghiệm.
+* Hoàn thiện công cụ phát hiện lai cho cả máy trạm Windows và hạ tầng đám mây AWS.

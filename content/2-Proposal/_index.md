@@ -1,115 +1,114 @@
 ---
 title: "Proposal"
-date: 2024-01-01
+date: 2026-07-30
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+# Cloud-Native Security Monitoring & Automated Threat Response System
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+## Real-Time Threat Detection & Incident Automation on AWS
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+### 1. What This Project Is About
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+For my internship project, I built a **Cloud-Native Security Monitoring & Automated Threat Response Platform** on AWS. The idea came from a real problem I noticed: most security teams rely on SIEM systems that batch-ingest logs every 5–15 minutes, which means an attacker can create a backdoor account, exfiltrate data, or expose an S3 bucket — and no one gets notified until it's too late.
+
+So I set out to build something different. The platform captures security events from across AWS infrastructure, routes high-risk threats through a serverless automation pipeline in **under 10 seconds**, automatically remediates them where possible, stores everything in a queryable database, and runs alongside an Elastic SIEM for comparison. All infrastructure is defined in Terraform and operates within AWS Free Tier — **$0.00 total spend**.
 
 ### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+**Cloud migration has expanded the enterprise attack surface — and attackers exploit API noise to navigate undetected.**
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+When organizations move workloads to AWS, traditional perimeter defenses stop working. Attacking a cloud environment doesn't usually require sophisticated exploits — attackers just need a leaked access key or an over-privileged IAM role, then they quietly use AWS API calls that look like normal administrative activity.
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+A typical cloud breach unfolds like this:
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+1. **Initial Access**: An attacker gets hold of an AWS access key or a phished IAM credential.
+2. **Reconnaissance**: They run quiet IAM enumeration commands (`ListUsers`, `ListRoles`, `GetAccountAuthorizationDetails`) to map out what they can access.
+3. **Persistence & Privilege Escalation**: They create a backdoor IAM user (`CreateUser`) and immediately grant it admin rights (`AttachUserPolicy` with `AdministratorAccess`).
+4. **Data Exfiltration / Exposure**: They bulk-download sensitive S3 objects (`GetObject`) or flip a bucket policy to make it publicly accessible (`PutBucketPolicy` with `Principal: *`).
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+The entire sequence can happen in under five minutes. The problem is that if your only defense is a SIEM polling logs every few minutes, you're already behind by the time an alert fires. The goal of this project was to close that gap.
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+### 3. Solution Architecture & Operational Flow
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+The platform runs two parallel tracks:
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+```mermaid
+graph TD
+    subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
+        API["AWS CloudTrail Audit Logs"] --> EB["Amazon EventBridge"]
+        GD["AWS GuardDuty ML Findings"] --> EB
+        SH["AWS Security Hub (CIS Benchmark)"] --> EB
+        EB --> SF["AWS Step Functions Orchestrator"]
+        SF --> LMD["AWS Lambda Auto-Remediation"]
+        LMD --> SNS["Amazon SNS Administrator Alert"]
+        LMD --> DDB["Amazon DynamoDB Audit Table"]
+        LMD --> ACT["Auto-Remediation (Revert S3 / Contain IAM SecurityDenyAll)"]
+        API --> S3["Amazon S3 Central Log Bucket"] --> ATH["Amazon Athena (SQL Threat Hunting)"]
+    end
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+    subgraph DualIngest["Dual-Ingestion & SIEM Detection Comparison Engine"]
+        S3 --> SQS["Amazon SQS Queue"] --> EA["Elastic Agent / Fleet"] --> SIEM["Elastic SIEM (Kibana)"]
+        SIEM -.-> BENCH["Detection Comparison Benchmark"]
+    end
+```
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+#### How It Works
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+1. **AWS Native Detect-Decide-Act Loop**:
+   - CloudTrail captures every API call. EventBridge watches for specific threat patterns (`PutBucketPolicy`, `CreateUser` followed by admin policy attach, GuardDuty findings) and triggers a Step Functions state machine.
+   - The state machine enriches the event context and hands it to Lambda, which auto-remediates in seconds — re-blocking public S3 access or attaching a `SecurityDenyAll` policy to contain a backdoor IAM account.
+   - Everything gets logged to DynamoDB and an SNS alert fires to the administrator email.
+   - Athena provides a SQL threat hunting layer over the raw CloudTrail logs stored in S3.
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+2. **Dual-Ingestion & SIEM Benchmark**:
+   - CloudTrail logs simultaneously stream into S3 → SQS → Elastic Agent → Elastic SIEM, running custom KQL detection rules in parallel.
+   - Both tracks feed an empirical benchmark comparing detection latency, precision, and maintenance overhead between the AWS-native serverless path and the SIEM-based path.
 
-Total: $0.7/month, $8.40/12 months
+---
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+### 4. AWS Services Used & Why I Chose Them
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+| Service | Role | Cost | Why This Service |
+| :--- | :--- | :--- | :--- |
+| **AWS CloudTrail** | Multi-Region API Audit Logging | Free Tier | Native audit trail — captures every management and data API call across the account. |
+| **Amazon S3** | Central Log Repository | Free Tier | Durable, encrypted log landing zone with zero idle compute cost. |
+| **Amazon EventBridge** | Real-Time Threat Event Router | Free Tier | Sub-second JSON pattern matching for CloudTrail threat calls & GuardDuty findings. |
+| **AWS Step Functions** | Pipeline Orchestrator | Free Tier | State machine that visually coordinates the `Detect → Enrich → Decide → Remediate` flow. |
+| **AWS Lambda** | Auto-Remediation Handler | Free Tier | Event-driven Python handler for S3 policy reversion, IAM containment, and DynamoDB logging. |
+| **Amazon SNS** | Alert Notification | Free Tier | Delivers formatted security alerts to administrator email. |
+| **Amazon DynamoDB** | Telemetry Audit Table | Free Tier | Stores pipeline alert history — low-latency with $0 idle cost. |
+| **Amazon Athena** | SQL Log Analytics | Pay-per-query ($0 idle) | Instant SQL queries over CloudTrail archives in S3 — no cluster to manage. |
+| **Amazon SQS** | SIEM Ingestion Queue | Free Tier | Decoupled queue that smooths out log volume spikes for Elastic Agent consumption. |
+| **Amazon CloudWatch** | Health Monitoring | Free Tier | Monitors SQS depth, Lambda error rates, and pipeline execution health. |
+| **AWS GuardDuty** | ML Threat Detection | 30-day Trial | ML anomaly detector — evaluated against custom EventBridge rules for a fair comparison. |
+| **AWS Security Hub** | CIS Benchmark Scanner | 30-day Trial | Automated compliance scanning against the CIS AWS Foundations Benchmark. |
+| **IAM Access Analyzer** | Resource Policy Scanner | Always Free | Static analysis of S3 bucket policies to catch public exposure misconfigurations. |
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+---
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+### 5. How I Built It
 
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+1. **Infrastructure as Code (Terraform)**: Every single AWS resource is defined in Terraform (`cloudtrail.tf`, `eventbridge.tf`, `step_functions.tf`, `lambda.tf`, `guardduty.tf`, `athena.tf`, and more). One command deploys everything, one command tears it down.
+2. **Serverless SOAR Pipeline**: The Python Lambda handler is tightly scoped with only the IAM permissions it actually needs (`s3:PutPublicAccessBlock`, `iam:AttachUserPolicy`, `dynamodb:PutItem`, `sns:Publish`).
+3. **Attack Simulation & Verification**: I simulated 5 realistic AWS attack scenarios (IAM recon, backdoor user creation, privilege escalation, S3 policy tampering, bulk exfiltration) to verify the pipeline fires alerts in under 10 seconds and auto-remediates correctly.
+4. **Athena SQL Threat Hunting**: Set up DDL table schemas over CloudTrail log archives for ad-hoc SQL forensic investigation.
+5. **Detection Comparison Benchmark**: Ran both AWS-native and KQL SIEM rule paths against the same attacks and measured the results.
+6. **Ops Dashboard**: Built a React 18 + FastAPI + DynamoDB dashboard to monitor pipeline health, invocation counts, and remediation status in real time.
+
+---
+
+### 6. Cost Controls & Risk Management
+
+- **$0.01 Budget Alarm**: A Zero-Spend AWS Budget alert fires to my root email if any charge appears.
+- **GuardDuty Trial Management**: Disabled the detector before Day 30 to prevent any paid usage.
+- **SQS Dead-Letter Queue**: Catches and retains failed Lambda invocations for debugging without data loss.
+
+---
+
+### 7. What I Expected to Deliver
+
+- A fully functional, event-driven cloud security platform with sub-10 second threat alerting, SQL log analytics, and ML detection comparison.
+- 100% Terraform-managed infrastructure — deploy with one command, tear down with one command.
+- A decoupled SQS interface letting any external SOC or SIEM system pull alert telemetry in real time.
