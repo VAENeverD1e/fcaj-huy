@@ -1,6 +1,6 @@
 baseURL = "https://VAENeverD1e.github.io/fcaj-huy/"
 relativeURLs = true
-canonifyURLs = true
+canonifyURLs = false
 defaultContentLanguage = "en"
 
 # Change the default theme to be use when building the site with Hugo

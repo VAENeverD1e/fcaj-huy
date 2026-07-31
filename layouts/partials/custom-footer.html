@@ -22,3 +22,10 @@
   ga("create", "UA-158079754-2", "auto");
   ga("send", "pageview");
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof mermaid !== "undefined") {
+      mermaid.init(undefined, ".mermaid");
+    }
+  });
+</script>

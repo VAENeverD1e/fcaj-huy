@@ -35,7 +35,7 @@ Bài workshop này hướng dẫn bạn từng bước xây dựng một phòng 
 graph TD
     subgraph Track1["Luồng AWS Cloud Native Detect-Decide-Act"]
         A2["Tấn công AWS Cloud (CLI/SDK)"] --> C1["Log Audit AWS CloudTrail"]
-        C1 --> C3["Mẫu Sự kiện EventBridge (<5s)"]
+        C1 --> C3["Mẫu Sự kiện EventBridge (dưới 5s)"]
         GD["Cảnh báo AWS GuardDuty ML"] --> C3
         SH["AWS Security Hub (CIS Benchmark)"] --> C3
         C3 --> SF["Bộ Phối hợp Step Functions"]
