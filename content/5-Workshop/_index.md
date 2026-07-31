@@ -28,33 +28,6 @@ The lab implements an AWS-native detect-decide-act loop paired with an empirical
    - **CloudTrail → S3 → SQS → Elastic Agent / Fleet → Elastic SIEM**.
    - AWS CloudTrail telemetry streams continuously into Elastic SIEM to evaluate managed cloud-native detection against custom KQL rules in a side-by-side benchmark (`detection-comparison.md`).
 
----
-
-#### System Architecture Overview
-
-{{< mermaid >}}
-graph TD
-    subgraph Track1["AWS Cloud Native Detect-Decide-Act Loop"]
-        A2["AWS Cloud Attack (CLI/SDK)"] --> C1["AWS CloudTrail Audit Logs"]
-        C1 --> C3["EventBridge Threat Patterns (<5s)"]
-        GD["AWS GuardDuty ML Findings"] --> C3
-        SH["AWS Security Hub (CIS Benchmark)"] --> C3
-        C3 --> SF["Step Functions Workflow"]
-        SF --> L1["AWS Lambda Remediation Handler"]
-        L1 --> SNS["Amazon SNS / Email Alert"]
-        L1 --> DDB["Amazon DynamoDB Audit Table"]
-        L1 --> ACT["Auto-Remediate (Revert S3 / Contain IAM SecurityDenyAll)"]
-        C1 --> S3["Amazon S3 Central Log Bucket"] --> ATH["Amazon Athena (SQL Threat Hunting)"]
-    end
-
-    subgraph ComparisonTrack["Dual-Ingestion & SIEM Detection Benchmark"]
-        S3 --> SQS["Amazon SQS Queue"] --> EF["Elastic Agent / Fleet"] --> KIB["Elastic SIEM Core"]
-        KIB -.-> BENCH["Detection Comparison Benchmark (detection-comparison.md)"]
-    end
-{{< /mermaid >}}
-
----
-
 #### Workshop Modules
 
 1. **[5.1 Workshop Overview & Architecture](5.1-Workshop-overview/)**: Deep-dive into architecture components, threat models, service selection technical rationale, IAM security design, and dual-speed pipeline mechanics.
