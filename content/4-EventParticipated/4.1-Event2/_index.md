@@ -1,6 +1,6 @@
 ---
-title: "Event 3"
-date: 2024-01-01
+title: "Event 2"
+date: 2026-07-30
 weight: 3
 chapter: false
 pre: " <b> 4.3. </b> "
@@ -93,4 +93,5 @@ Participating in the **Agentic AI Buildweek Hackathon** was an intense yet highl
 - **Team Spirit & Networking**: Strengthening camaraderie through late-night coding sessions and expanding networks within the AWS community.
 
 #### Event Photos
+
 ![Image of attending event](/images/4-EventParticipated/event3.jpg)

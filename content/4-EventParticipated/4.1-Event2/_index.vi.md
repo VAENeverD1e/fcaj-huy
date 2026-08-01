@@ -1,6 +1,6 @@
 ---
-title: "Event 3"
-date: 2024-01-01
+title: "Event 2"
+date: 2026-07-30
 weight: 3
 chapter: false
 pre: " <b> 4.3. </b> "
@@ -92,4 +92,5 @@ Tham gia sự kiện **Agentic AI Buildweek Hackathon** là một hành trình t
 - **Tinh thần đồng đội & Kết nối**: Thắt chặt tình đồng đội qua những đêm thức trắng cùng làm project và mở rộng mạng lưới kết nối trong cộng đồng AWS.
 
 #### Một số hình ảnh khi tham gia sự kiện
+
 ![Hình ảnh trong sự kiện](/images/4-EventParticipated/event3.jpg)

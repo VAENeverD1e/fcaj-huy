@@ -1,6 +1,6 @@
 ---
 title: "Các events đã tham gia"
-date: 2024-01-01
+date: 2026-07-30
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
@@ -8,22 +8,8 @@ pre: " <b> 4. </b> "
 
 Trong quá trình thực tập, em đã tham gia 3 events. Mỗi event đều là một trải nghiệm đáng nhớ mang lại những kiến thức thực tiễn bổ ích, cơ hội kết nối với các chuyên gia trong ngành và nâng cao tư duy thiết kế hệ thống Cloud & AI.
 
-### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** AWS FC Community Day
+### [Event 1](4.2-Event1/)
 
-&emsp;**Thời gian:** 09:00 ngày 15/06/2024
-
-&emsp;**Địa điểm:** Tầng 26 & 36, Tòa nhà Bitexco Financial Tower, Số 02 Đường Hải Triều, Bến Nghé, Quận 1, TP. Hồ Chí Minh (online)
-
-&emsp;**Vai trò trong sự kiện:** Người tham dự
-
-&emsp;**Mô tả nội dung:** Sự kiện tập trung chia sẻ chuyên sâu từ các chuyên gia doanh nghiệp về Agentic Platform cho Infrastructure, Voice AI Agent tiếng Việt, AWS DevOps Agent xử lý sự cố DDoS, Amazon Q Business tự động hóa quy trình HR và mô hình bảo mật Private VPC cho MCP Server.
-
-&emsp;**Kết quả đạt được:** Tiếp thu tư duy Human-in-the-loop trong vận hành Production critical, nắm vững cơ chế xây dựng Voice AI tiếng Việt (STT-LLM-TTS) và kỹ thuật bảo mật Zero Trust cho MCP Server.
-
----
-
-### [Event 2](4.2-Event2/)
 &emsp;**Tên sự kiện:** AWS Study Tour & Cloud AI Journey
 
 &emsp;**Thời gian:** 09:00 ngày 20/07/2024
@@ -38,7 +24,8 @@ Trong quá trình thực tập, em đã tham gia 3 events. Mỗi event đều l�
 
 ---
 
-### [Event 3](4.1-Event3/)
+### [Event 2](4.1-Event2/)
+
 &emsp;**Tên sự kiện:** Agentic AI Buildweek Hackathon
 
 &emsp;**Thời gian:** 08:00 ngày 10/08/2024 (Cuộc thi lập trình 24h)

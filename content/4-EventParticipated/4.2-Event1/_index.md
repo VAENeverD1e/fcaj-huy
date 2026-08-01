@@ -1,6 +1,6 @@
 ---
-title: "Event 2"
-date: 2024-01-01
+title: "Event 1"
+date: 2026-07-30
 weight: 1
 chapter: false
 pre: " <b> 4.2. </b> "
@@ -85,4 +85,5 @@ Attending the **AWS Study Tour** provided an eye-opening and inspiring experienc
 - **Interactive & Engaging Atmosphere**: Lively Q&A sessions, direct discussions, and small talk demos made the event welcoming and impactful.
 
 #### Event Photos
+
 ![Image of attending event](/images/4-EventParticipated/event2.jpeg)
