@@ -93,4 +93,4 @@ Participating in the **Agentic AI Buildweek Hackathon** was an intense yet highl
 - **Team Spirit & Networking**: Strengthening camaraderie through late-night coding sessions and expanding networks within the AWS community.
 
 #### Event Photos
-![Image of attending event](./../../../static/images/4-EventParticipated/event3.png)
+![Image of attending event](/images/4-EventParticipated/event3.jpg)

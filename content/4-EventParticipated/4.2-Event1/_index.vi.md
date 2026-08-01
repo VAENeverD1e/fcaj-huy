@@ -86,4 +86,4 @@ Chuyến tham quan **AWS Study Tour** là một trải nghiệm mở rộng góc
 - **Không khí tương tác sôi nổi**: Các phiên thảo luận, đặt câu hỏi trực tiếp và small talk thử nghiệm giúp không khí sự kiện trở nên cởi mở và giàu cảm hứng.
 
 #### Một số hình ảnh khi tham gia sự kiện
-![Hình ảnh trong sự kiện](./../../../static/images/4-EventParticipated/event2.png)
+![Hình ảnh trong sự kiện](/images/4-EventParticipated/event2.jpeg)

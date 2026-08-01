@@ -92,4 +92,4 @@ Tham gia sự kiện **Agentic AI Buildweek Hackathon** là một hành trình t
 - **Tinh thần đồng đội & Kết nối**: Thắt chặt tình đồng đội qua những đêm thức trắng cùng làm project và mở rộng mạng lưới kết nối trong cộng đồng AWS.
 
 #### Một số hình ảnh khi tham gia sự kiện
-![Hình ảnh trong sự kiện](./../../../static/images/4-EventParticipated/event3.png)
+![Hình ảnh trong sự kiện](/images/4-EventParticipated/event3.jpg)

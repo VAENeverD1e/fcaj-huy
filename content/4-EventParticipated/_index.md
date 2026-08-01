@@ -6,24 +6,9 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in 3 events. Each event was a memorable experience that provided valuable real-world engineering insights, opportunities to network with industry leaders, and enhanced Cloud & AI system architecture mindsets.
+During my internship, I participated in 2 events. Each event was a memorable experience that provided valuable real-world engineering insights, opportunities to network with industry leaders, and enhanced Cloud & AI system architecture mindsets.
 
-### [Event 1](4.1-Event1/)
-&emsp;**Event Name:** AWS FC Community Day
-
-&emsp;**Date & Time:** 09:00, July 4, 2026
-
-&emsp;**Location:** 26th & 36th Floors, Bitexco Financial Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City (Online)
-
-&emsp;**Role:** Attendee
-
-&emsp;**Brief Description:** A technical deep-dive community event featuring industry experts sharing insights on Agentic Infrastructure Platforms, Vietnamese Voice AI Agents, AWS DevOps Agent for DDoS mitigation, Amazon Q Business for HR automation, and Private VPC Security for MCP Servers.
-
-&emsp;**Outcomes & Value Gained:** Mastered Human-in-the-loop operational mindsets for production-critical systems, Vietnamese Voice AI architecture pipelines (STT-LLM-TTS), and Zero Trust security implementations for private MCP Servers.
-
----
-
-### [Event 2](4.2-Event2/)
+### [Event 1](4.2-Event1/)
 &emsp;**Event Name:** AWS Study Tour & Cloud AI Journey
 
 &emsp;**Date & Time:** 09:00, July 11, 2026
@@ -38,7 +23,7 @@ During my internship, I participated in 3 events. Each event was a memorable exp
 
 ---
 
-### [Event 3](4.1-Event3/)
+### [Event 2](4.1-Event2/)
 &emsp;**Event Name:** Agentic AI Buildweek Hackathon
 
 &emsp;**Date & Time:** 09:00, July 25, 2026

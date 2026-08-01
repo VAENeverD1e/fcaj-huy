@@ -85,4 +85,4 @@ Attending the **AWS Study Tour** provided an eye-opening and inspiring experienc
 - **Interactive & Engaging Atmosphere**: Lively Q&A sessions, direct discussions, and small talk demos made the event welcoming and impactful.
 
 #### Event Photos
-![Image of attending event](./../../../static/images/4-EventParticipated/event2.png)
+![Image of attending event](/images/4-EventParticipated/event2.jpeg)
