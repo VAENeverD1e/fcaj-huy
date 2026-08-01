@@ -17,7 +17,7 @@ Phụ lục này tổng hợp các liên kết đến các repository mã nguồ
 #### 1. SOC Threat Detection & Incident Response Lab
 
 * **Liên kết Repository:** [https://github.com/VAENeverD1e/soc-detection-lab](https://github.com/VAENeverD1e/soc-detection-lab)
-* **Mô tả:** Mã nguồn và tài liệu kiến trúc cho phòng lab Phát hiện đe dọa an ninh Cloud và Tự động phản ứng sự cố trên AWS. Bao gồm các kịch bản tấn công giả lập (IAM Privilege Escalation, S3 Data Exfiltration, Unauthorized EC2 Launch, GuardDuty Findings, VPC Flow Logs Anomaly), các quy tắc tương quan Elastic SIEM & KQL, hàm Lambda tự động khắc phục sự cố và cấu hình định tuyến EventBridge.
+* **Mô tả:** Mã nguồn và tài liệu kiến trúc cho phòng lab Phát hiện đe dọa an ninh Cloud và Tự động phản ứng sự cố trên AWS. Bao gồm các kịch bản tấn công giả lập.
 
 #### 2. Operations Dashboard & Terraform Infrastructure
 
