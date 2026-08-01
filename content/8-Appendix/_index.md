@@ -17,7 +17,7 @@ This appendix contains links to the source code repositories and Infrastructure-
 #### 1. SOC Threat Detection & Incident Response Lab
 
 * **Repository:** [https://github.com/VAENeverD1e/soc-detection-lab](https://github.com/VAENeverD1e/soc-detection-lab)
-* **Description:** Source code and architecture artifacts for the AWS Cloud Security Threat Detection & Automated Incident Response Lab. Includes simulated attack scenarios (IAM Privilege Escalation, S3 Data Exfiltration, Unauthorized EC2 Launch, GuardDuty Findings, VPC Flow Logs Anomaly), Elastic SIEM & KQL correlation rules, AWS Lambda auto-remediation functions, and EventBridge routing configurations.
+* **Description:** Source code and architecture artifacts for the AWS Cloud Security Threat Detection & Automated Incident Response Lab. Includes simulated attack scenarios, Elastic SIEM & KQL correlation rules.
 
 #### 2. Operations Dashboard & Terraform Infrastructure
 
