@@ -7,25 +7,26 @@ pre: " <b> 1.6. </b> "
 ---
 ### Mục tiêu Tuần 6
 
-* Hiểu các khái niệm cơ sở dữ liệu NoSQL Amazon DynamoDB: Partition key, sort key, secondary index, chế độ dung lượng (Pay-Per-Request / Provisioned Free Tier) và Time To Live (TTL).
-* Nâng cấp hàm Lambda để lưu trữ toàn bộ bản ghi cảnh báo an ninh vào DynamoDB phục vụ tra cứu lịch sử audit và hiển thị trên giao diện điều khiển.
-* Nắm vững dịch vụ giám sát Amazon CloudWatch: Custom Metric, Metric Filter, CloudWatch Alarm và cơ chế kích hoạt thông báo.
-* Thiết lập hệ thống giám sát vận hành và rào chắn chi phí cho đường ống tự động hóa serverless.
+* Tìm hiểu các dịch vụ quét an ninh thụ động IAM Access Analyzer, truy vấn log SQL serverless Amazon Athena và phát hiện đe dọa managed AWS GuardDuty.
+* Bật IAM Access Analyzer để phát hiện các quyền truy cập ngoài ý muốn vào tài nguyên AWS (S3, IAM, Lambda, SQS).
+* Xây dựng bộ 4 câu lệnh truy vấn SQL SOC nòng cốt trong Amazon Athena Console để săn đe dọa trên tệp log CloudTrail S3 thô.
+* Bật AWS GuardDuty detector trong thời gian dùng thử 30 ngày (Free Trial) và đánh giá kết quả phát hiện so với quy tắc KQL tùy chỉnh trên SIEM.
+* Viết báo cáo đánh giá so sánh chuyên sâu (`guardduty-comparison.md`) phân tích độ trễ phát hiện, phạm vi quan sát và bài toán chi phí, sau đó chủ động tắt GuardDuty trước khi hết trial.
 
 ### Các công việc triển khai trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Nghiên cứu chuyên sâu kiến trúc NoSQL Amazon DynamoDB.<br>- Tạo bảng DynamoDB (`SecurityAlerts`) với `AlertID` (Partition Key) và `Timestamp` (Sort Key).<br>- Bật thuộc tính Time To Live (TTL) (`ttl_expiry`) thời hạn 90 ngày để tự động giải phóng dung lượng lưu trữ, đảm bảo hạn mức Free Tier. | 20/07/2026 | 20/07/2026 | <https://000060.awsstudygroup.com> |
-| 3 | - Cập nhật hàm Lambda (`soc-alert-enricher`) sử dụng Boto3 `dynamodb.put_item()` ghi lại mọi cảnh báo đã xử lý vào bảng `SecurityAlerts`.<br>- Lưu kèm dữ liệu phong phú: mức độ nghiêm trọng (severity), IP tấn công, AWS account ID, raw event JSON và hướng dẫn xử lý. | 21/07/2026 | 21/07/2026 | <https://000060.awsstudygroup.com> |
-| 4 | - Tìm hiểu Amazon CloudWatch Metrics, Alarms và Metric Filters.<br>- Tạo CloudWatch Metric Filter trên luồng log SQS queue để theo dõi tốc độ xử lý tin nhắn và số lượng tin nhắn lỗi trong DLQ. | 22/07/2026 | 22/07/2026 | <https://000008.awsstudygroup.com> |
-| 5 | - Cấu hình các CloudWatch Alarm:<br>&emsp;+ `SQSQueueDepthAlarm`: Kích hoạt nếu độ sâu hàng đợi SQS vượt 500 tin nhắn (phát hiện nghẽn dữ liệu về SIEM).<br>&emsp;+ `LambdaErrorAlarm`: Kích hoạt khi có lỗi thực thi hàm Lambda.<br>&emsp;+ `FreeTierBudgetAlarm`: Theo dõi chi phí dự báo hàng tháng. | 23/07/2026 | 23/07/2026 | <https://000036.awsstudygroup.com> |
-| 6 | - Kiểm thử kiến trúc cảnh báo song song: Xác nhận khi mô phỏng tấn công, hệ thống đồng thời gửi cảnh báo SNS tức thì, ghi bản ghi vào DynamoDB và đẩy dữ liệu về Elastic SIEM.<br>- Kiểm tra các chỉ số hiển thị trên CloudWatch console. | 24/07/2026 | 24/07/2026 | End-to-End Pipeline Testing |
+| 2 | - Bật IAM Access Analyzer với ranh giới trust zone là tài khoản AWS để đánh giá chia sẻ tài nguyên công khai/liên tài khoản.<br>- Cấu hình Athena database & workgroup trên S3 bucket lưu log CloudTrail. | 20/07/2026 | 20/07/2026 | <https://000030.awsstudygroup.com> |
+| 3 | - Xây dựng và thực thi 4 câu lệnh truy vấn SQL SOC trong Athena Query Editor:<br>&emsp;+ Top địa chỉ IP gọi API thất bại<br>&emsp;+ Lịch sử tạo IAM access key<br>&emsp;+ Thay đổi chính sách S3 bucket<br>&emsp;+ Hành động API của Root user trong 7 ngày qua. | 21/07/2026 | 21/07/2026 | <https://000106.awsstudygroup.com> |
+| 4 | - Bật AWS GuardDuty detector ở chế độ trial với lịch nhắc tắt dịch vụ rõ ràng.<br>- Tạo EventBridge Event Rule lọc sự kiện cảnh báo GuardDuty (`aws.guardduty`) chuyển tiếp tới hàm Lambda. | 22/07/2026 | 22/07/2026 | <https://000098.awsstudygroup.com> |
+| 5 | - Tái thực thi Kịch bản Tấn công Cloud 8–12 (Đăng nhập Root không MFA, dò quét IAM, tạo persistence key, rút dữ liệu S3).<br>- Ghi nhận dữ liệu thực nghiệm: Độ trễ KQL tùy chỉnh (~4–13 phút) so với giới hạn baseline và thời gian phát hiện của GuardDuty. | 23/07/2026 | 23/07/2026 | Empirical Testing Data |
+| 6 | - Hoàn thiện báo cáo đánh giá so sánh chuyên sâu (`guardduty-comparison.md`).<br>- Chủ động tắt GuardDuty detector và S3 Protection trước khi hết hạn trial để giữ nguyên chi phí AWS ở mức $0. | 24/07/2026 | 24/07/2026 | <https://000098.awsstudygroup.com> |
 
 ### Kết quả đạt được Tuần 6
 
-* Làm quen thực hành thiết kế cơ sở dữ liệu NoSQL với Amazon DynamoDB và tự động hóa quản lý vòng đời dữ liệu (TTL).
-* Xây dựng kho lưu trữ cảnh báo an ninh bền vững ghi nhận toàn bộ telemetry đe dọa vào DynamoDB.
-* Cấu hình hệ thống cảnh báo CloudWatch Alarms đảm bảo giám sát sức khỏe vận hành của hàm Lambda và độ sâu hàng đợi SQS.
-* Kiểm chứng thành công kiến trúc cảnh báo song song: luồng serverless cảnh báo gần như tức thì (~2 giây) chạy song song với luồng phân tích SIEM (~5 phút).
-* Đảm bảo toàn bộ tài nguyên hoạt động hoàn toàn trong hạn mức AWS Free Tier (25 GB lưu trữ DynamoDB miễn phí, 10 CloudWatch alarms miễn phí).
+* Bật thành công AWS IAM Access Analyzer tự động phát hiện cấu hình sai thụ động ở mức chi phí $0.
+* Xây dựng bộ 4 câu lệnh truy vấn SQL điều tra sự cố thực tế trong Amazon Athena phục vụ săn đe dọa trên tệp log CloudTrail S3 thô.
+* Tích hợp dịch vụ phát hiện đe dọa AWS GuardDuty vào luồng cảnh báo serverless qua EventBridge.
+* Thực hiện so sánh đối chứng thực nghiệm giữa luật KQL tùy chỉnh và cảnh báo GuardDuty, hoàn thiện báo cáo `guardduty-comparison.md`.
+* Đảm bảo kỷ luật chi phí nghiêm ngặt khi tắt GuardDuty trước khi hết trial, duy trì tổng chi phí AWS ở mức $0.

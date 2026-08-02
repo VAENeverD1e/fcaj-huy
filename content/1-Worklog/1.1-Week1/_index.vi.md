@@ -16,7 +16,7 @@ pre: " <b> 1.1. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Tham gia buổi định hướng FCAJ và kết nối với các thành viên.<br>- Đọc kỹ nội quy và quy định đơn vị thực tập.<br>- Xác định lộ trình 12 tuần kết hợp học AWS và làm dự án SOC Lab. | 15/06/2026 | 15/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Tham gia buổi định hướng FCAJ và kết nối với các thành viên.<br>- Đọc kỹ nội quy và quy định đơn vị thực tập.<br>- Xác định lộ trình 9 tuần kết hợp học AWS và làm dự án SOC Lab. | 15/06/2026 | 15/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
 | 3 | - Tạo tài khoản AWS Free Tier.<br>- Bảo mật tài khoản Root: bật MFA, tạo user IAM Admin riêng.<br>- Cấu hình AWS Zero-Spend Budget Alarm và cảnh báo chi phí CloudWatch. | 16/06/2026 | 16/06/2026 | <https://000001.awsstudygroup.com><br><https://000007.awsstudygroup.com> |
 | 4 | - Cài đặt và cấu hình AWS CLI trên máy trạm (`aws configure`).<br>- Thực hành các lệnh CLI: quản lý key pair, liệt kê region, kiểm tra EC2 instance. | 17/06/2026 | 17/06/2026 | <https://000011.awsstudygroup.com> |
 | 5 | - Tìm hiểu các khái niệm EC2: Instance types (t2.micro/t3.micro), AMI, EBS storage types.<br>- Tìm hiểu quản lý SSH key pair và luật Security Group. | 18/06/2026 | 18/06/2026 | <https://000004.awsstudygroup.com> |

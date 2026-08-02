@@ -7,25 +7,25 @@ pre: " <b> 1.9. </b> "
 ---
 ### Week 9 Objectives
 
-* Learn Infrastructure as Code (IaC) principles, HashiCorp Configuration Language (HCL) syntax, and Terraform declarative workflow (`init`, `plan`, `apply`, `destroy`).
-* Understand Terraform State management, local vs. remote backends, resource dependencies (`depends_on`), and input/output variables.
-* Codify the entire AWS security cloud stack using Terraform modules (`terraform/` directory).
-* Validate automated, single-command environment replication (`terraform apply`) for all cloud components.
+* Perform comprehensive end-to-end integration testing across both detection pipelines: Elastic SIEM log correlation and Serverless push alert routing.
+* Conduct strict financial audit verifying near-zero ($0) AWS billing spend across all 9 weeks.
+* Finalize all technical documentation, architecture diagrams (`architecture.png`, `cloud-architecture.png`), scenario execution guides, self-evaluations, and internship portfolio write-ups.
+* Present final project deliverables to the First Cloud AI Journey (FCAJ) internship evaluation panel.
 
 ### Tasks Carried Out This Week
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Study Terraform fundamentals, AWS Provider configuration, and HCL code structuring principles.<br>- Initialize Terraform project directory (`terraform/`) and configure `main.tf`, `variables.tf`, and `outputs.tf`. | 08/10/2026 | 08/10/2026 | <https://000102.awsstudygroup.com> |
-| Tue | - Codify Storage & Logging Layer in Terraform:<br>&emsp;+ Amazon S3 bucket module (`s3.tf`) with server-side encryption, Block Public Access, and bucket policies.<br>&emsp;+ AWS CloudTrail module (`cloudtrail.tf`) configured for multi-region logging.<br>&emsp;+ Amazon SQS queue module (`sqs.tf`) with dead-letter queue. | 08/11/2026 | 08/11/2026 | <https://000037.awsstudygroup.com> |
-| Wed | - Codify Serverless & Automation Layer in Terraform:<br>&emsp;+ Amazon EventBridge rules (`eventbridge.tf`) matching CloudTrail security event patterns.<br>&emsp;+ AWS Lambda function module (`lambda.tf`) including Python code packaging and IAM execution role.<br>&emsp;+ Amazon SNS topic module (`sns.tf`) and email/webhook subscriptions. | 08/12/2026 | 08/12/2026 | <https://000038.awsstudygroup.com> |
-| Thu | - Codify NoSQL & Analytics Layer in Terraform:<br>&emsp;+ Amazon DynamoDB table (`dynamodb.tf`) with `AlertID` key and TTL configuration.<br>&emsp;+ Amazon Athena database & workgroup module (`athena.tf`).<br>&emsp;+ AWS IAM Access Analyzer module (`access_analyzer.tf`). | 08/13/2026 | 08/13/2026 | <https://000102.awsstudygroup.com> |
-| Fri | - Test full lifecycle execution: run `terraform plan` to audit 20+ plan resources.<br>- Execute `terraform apply` to provision the entire cloud architecture in a clean AWS region within ~3 minutes.<br>- Verify successful provisioned state and run `terraform destroy` test. | 08/14/2026 | 08/14/2026 | Terraform IaC Validation |
+| Mon | - Conduct full end-to-end system testing:<br>&emsp;+ Execute full suite of 12 attack scenarios (7 Endpoint + 5 AWS Cloud).<br>&emsp;+ Verify dual alert notifications: instant SNS email alert (~2s) and deep SIEM log correlation rule (~5 min).<br>&emsp;+ Verify live metrics rendered accurately on the Automation Ops Dashboard. | 08/10/2026 | 08/10/2026 | End-to-End Integration Test Suite |
+| Tue | - Conduct AWS Financial Audit:<br>&emsp;+ Inspect AWS Cost Explorer and CloudWatch Billing Alarms.<br>&emsp;+ Verify total AWS spend across the entire 9-week project lifecycle remained $0 (with zero paid GuardDuty or Config recording charges). | 08/11/2026 | 08/11/2026 | <https://000007.awsstudygroup.com> |
+| Wed | - Embed high-resolution architecture diagrams (`architecture.png` for Windows lab and `cloud-architecture.png` for AWS pipeline) into project documentation.<br>- Complete proposal revisions in Section 7 (Timeline) and Section 10 (Expected Outcomes).<br>- Refine Module 5.2 Prerequisites documentation: clarify honest VM ELK architecture, separate victim VM vs host machine roles, and streamline required tool version tables. | 08/12/2026 | 08/12/2026 | Documentation Management |
+| Thu | - Author internship self-evaluation report (`content/6-Self-evaluation/`).<br>- Review student feedback documentation (`content/7-Feedback/`).<br>- Perform Hugo documentation build test (`hugo`) to confirm clean rendering across all pages. | 08/13/2026 | 08/13/2026 | <https://cloudjourney.awsstudygroup.com/8-fcjworkforce/> |
+| Fri | - Deliver final technical project presentation to FCAJ mentors.<br>- Publish final SOC Documentation Portal codebase.<br>- Successfully conclude the FCAJ Internship Program. | 08/14/2026 | 08/14/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Week 9 Achievements
 
-* Mastered Infrastructure as Code (IaC) engineering using Terraform and HashiCorp Configuration Language (HCL).
-* Fully codified the entire AWS cloud security stack into modular, reusable Terraform scripts under `terraform/`.
-* Replaced manual AWS Console configurations with 100% reproducible Infrastructure as Code.
-* Demonstrated single-command cloud environment deployment (`terraform apply`) in under 3 minutes.
-* Ensured secure Terraform state file management with sensitive parameter masking and git isolation (`.gitignore`).
+* Validated end-to-end integration and dual-alerting reliability across all 12 security threat scenarios.
+* Proven strict financial discipline: maintained $0 total AWS spend for the complete 9-week project lifecycle.
+* Published complete portfolio documentation including 12 scenario walkthroughs, 4 threat hunt reports, 1 GuardDuty comparative analysis, Terraform module repository, full-stack Ops Dashboard codebase, and streamlined Module 5.2 workshop prerequisites.
+* Embedded high-quality architecture diagrams into the published SOC documentation portal.
+* Successfully completed the First Cloud AI Journey (FCAJ) internship program with distinction.

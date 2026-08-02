@@ -16,7 +16,7 @@ pre: " <b> 1.1. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Attend FCAJ orientation & team introduction.<br>- Review internship guidelines, rules, and expectations.<br>- Define 12-week roadmap combining AWS learning & SOC Lab project. | 06/15/2026 | 06/15/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| Mon | - Attend FCAJ orientation & team introduction.<br>- Review internship guidelines, rules, and expectations.<br>- Define 9-week roadmap combining AWS learning & SOC Lab project. | 06/15/2026 | 06/15/2026 | <https://cloudjourney.awsstudygroup.com/> |
 | Tue | - Set up AWS Free Tier account.<br>- Configure IAM root security: enable MFA, create dedicated IAM admin user.<br>- Set up AWS Zero-Spend Budget Alarms and CloudWatch cost alerts. | 06/16/2026 | 06/16/2026 | <https://000001.awsstudygroup.com><br><https://000007.awsstudygroup.com> |
 | Wed | - Install and configure AWS CLI on local workstation (`aws configure`).<br>- Practice CLI operations: managing key pairs, listing regions, inspecting EC2 instances. | 06/17/2026 | 06/17/2026 | <https://000011.awsstudygroup.com> |
 | Thu | - Learn EC2 core concepts: Instance types (t2.micro/t3.micro), AMIs, EBS volume types.<br>- Learn SSH key pair management and Security Group inbound/outbound rules. | 06/18/2026 | 06/18/2026 | <https://000004.awsstudygroup.com> |

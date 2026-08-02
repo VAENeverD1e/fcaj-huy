@@ -7,24 +7,25 @@ pre: " <b> 1.7. </b> "
 ---
 ### Week 7 Objectives
 
-* Understand AWS IAM Access Analyzer passive security scanning concepts: analyzer creation, trust zone evaluation, external access findings, and policy validation.
-* Learn Amazon Athena serverless SQL query engine and its role in querying CloudTrail audit logs stored in Amazon S3.
-* Enable IAM Access Analyzer to detect unintended external access to AWS resources (S3, IAM, Lambda, SQS) without incurring extra recording costs.
-* Author a library of 4 core SOC forensic SQL queries in Amazon Athena Console for threat hunting over CloudTrail S3 logs.
+* Learn Infrastructure as Code (IaC) principles, HashiCorp Configuration Language (HCL) syntax, and Terraform declarative workflow (`init`, `plan`, `apply`, `destroy`).
+* Understand Terraform State management, local vs. remote backends, resource dependencies (`depends_on`), and input/output variables.
+* Codify the entire AWS security cloud stack using Terraform modules (`terraform/` directory).
+* Validate automated, single-command environment replication (`terraform apply`) for all cloud components.
 
 ### Tasks Carried Out This Week
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Study IAM Access Analyzer passive scanning capabilities.<br>- Enable IAM Access Analyzer with the account as the trust zone boundary.<br>- Review findings generated for external cross-account access and public S3 resource shares. | 07/27/2026 | 07/27/2026 | <https://000030.awsstudygroup.com> |
-| Tue | - Learn Amazon Athena serverless SQL query concepts.<br>- Configure Athena query result output location in Amazon S3. | 07/28/2026 | 07/28/2026 | <https://000106.awsstudygroup.com> |
-| Wed | - Explore AWS CloudTrail integration with Amazon Athena.<br>- Create Athena table over CloudTrail S3 log bucket using standard AWS console template. | 07/29/2026 | 07/29/2026 | <https://000040.awsstudygroup.com> |
-| Thu | - Author and test 4 SOC forensic SQL queries in Athena Query Editor:<br>&emsp;+ Query 1: Top IP addresses making failed API calls (`errorCode IS NOT NULL`).<br>&emsp;+ Query 2: IAM access key creation timeline (`CreateAccessKey`).<br>&emsp;+ Query 3: S3 bucket policy changes (`PutBucketPolicy`/`DeleteBucketPolicy`).<br>&emsp;+ Query 4: Root user API actions executed within the last 7 days. | 07/30/2026 | 07/30/2026 | <https://000106.awsstudygroup.com> |
-| Fri | - Review query execution results and execution times in Athena Console.<br>- Confirm zero additional standing infrastructure cost for Athena and IAM Access Analyzer. | 07/31/2026 | 07/31/2026 | AWS Cost Management |
+| Mon | - Study Terraform fundamentals, AWS Provider configuration, and HCL code structuring principles.<br>- Initialize Terraform project directory (`terraform/`) and configure `main.tf`, `variables.tf`, and `outputs.tf`. | 07/27/2026 | 07/27/2026 | <https://000102.awsstudygroup.com> |
+| Tue | - Codify Storage & Logging Layer in Terraform:<br>&emsp;+ Amazon S3 bucket module (`s3.tf`) with server-side encryption, Block Public Access, and bucket policies.<br>&emsp;+ AWS CloudTrail module (`cloudtrail.tf`) configured for multi-region logging.<br>&emsp;+ Amazon SQS queue module (`sqs.tf`) with dead-letter queue. | 07/28/2026 | 07/28/2026 | <https://000037.awsstudygroup.com> |
+| Wed | - Codify Serverless & Automation Layer in Terraform:<br>&emsp;+ Amazon EventBridge rules (`eventbridge.tf`) matching CloudTrail security event patterns.<br>&emsp;+ AWS Lambda function module (`lambda.tf`) including Python code packaging and IAM execution role.<br>&emsp;+ Amazon SNS topic module (`sns.tf`) and email/webhook subscriptions. | 07/29/2026 | 07/29/2026 | <https://000038.awsstudygroup.com> |
+| Thu | - Codify NoSQL & Analytics Layer in Terraform:<br>&emsp;+ Amazon DynamoDB table (`dynamodb.tf`) with `AlertID` key and TTL configuration.<br>&emsp;+ Amazon Athena database & workgroup module (`athena.tf`).<br>&emsp;+ AWS IAM Access Analyzer module (`access_analyzer.tf`). | 07/30/2026 | 07/30/2026 | <https://000102.awsstudygroup.com> |
+| Fri | - Test full lifecycle execution: run `terraform plan` to audit 20+ plan resources.<br>- Execute `terraform apply` to provision the entire cloud architecture in a clean AWS region within ~3 minutes.<br>- Verify successful provisioned state and run `terraform destroy` test. | 07/31/2026 | 07/31/2026 | Terraform IaC Validation |
 
 ### Week 7 Achievements
 
-* Successfully enabled AWS IAM Access Analyzer for automated, passive misconfiguration detection (always free).
-* Configured Amazon Athena Query Editor and created a CloudTrail log table using standard AWS console templates.
-* Built a practical library of 4 forensic SQL queries enabling rapid threat hunting directly against raw S3 audit logs.
-* Confirmed that passive scanning and on-demand Athena queries incur zero standing monthly costs.
+* Mastered Infrastructure as Code (IaC) engineering using Terraform and HashiCorp Configuration Language (HCL).
+* Fully codified the entire AWS cloud security stack into modular, reusable Terraform scripts under `terraform/`.
+* Replaced manual AWS Console configurations with 100% reproducible Infrastructure as Code.
+* Demonstrated single-command cloud environment deployment (`terraform apply`) in under 3 minutes.
+* Ensured secure Terraform state file management with sensitive parameter masking and git isolation (`.gitignore`).

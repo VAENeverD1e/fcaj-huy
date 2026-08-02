@@ -7,25 +7,25 @@ pre: " <b> 1.9. </b> "
 ---
 ### Mục tiêu Tuần 9
 
-* Tìm hiểu các nguyên lý Hạ tầng dưới dạng mã (Infrastructure as Code - IaC), cú pháp ngôn ngữ HCL (HashiCorp Configuration Language) và quy trình khai báo Terraform (`init`, `plan`, `apply`, `destroy`).
-* Nắm vững quản lý Terraform State, local vs remote backend, phụ thuộc tài nguyên (`depends_on`), và biến đầu vào/đầu ra (variables/outputs).
-* Mã hóa toàn bộ hạ tầng bảo mật AWS Cloud thành các module Terraform trong thư mục `terraform/`.
-* Xác minh khả năng khởi tạo môi trường tự động hóa chỉ bằng một câu lệnh (`terraform apply`) cho toàn bộ thành phần Cloud.
+* Thực hiện kiểm thử tích hợp toàn bộ hệ thống trên cả hai đường ống phát hiện: Phân tích log chuyên sâu trên Elastic SIEM và cảnh báo thời gian thực serverless.
+* Thực hiện kiểm toán tài chính nghiêm ngặt xác nhận chi phí AWS đạt mức xấp xỉ $0 trong suốt 9 tuần thực tập.
+* Hoàn thiện toàn bộ tài liệu kỹ thuật, sơ đồ kiến trúc (`architecture.png`, `cloud-architecture.png`), hướng dẫn thực thi kịch bản, báo cáo tự đánh giá và hồ sơ năng lực thực tập.
+* Báo cáo và bảo vệ kết quả dự án trước hội đồng đánh giá chương trình thực tập First Cloud AI Journey (FCAJ).
 
 ### Các công việc triển khai trong tuần
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --- | --- | --- | --- |
-| 2 | - Nghiên cứu các khái niệm cơ bản về Terraform, cấu hình AWS Provider và nguyên tắc tổ chức mã nguồn HCL.<br>- Khởi tạo thư mục dự án Terraform (`terraform/`), cấu hình các tệp `main.tf`, `variables.tf` và `outputs.tf`. | 10/08/2026 | 10/08/2026 | <https://000102.awsstudygroup.com> |
-| 3 | - Mã hóa Tầng Lưu trữ & Ghi log bằng Terraform:<br>&emsp;+ Module Amazon S3 (`s3.tf`) với mã hóa server-side, Block Public Access và chính sách bucket.<br>&emsp;+ Module AWS CloudTrail (`cloudtrail.tf`) cấu hình ghi log đa region.<br>&emsp;+ Module Amazon SQS (`sqs.tf`) kèm hàng đợi tin nhắn lỗi (DLQ). | 11/08/2026 | 11/08/2026 | <https://000037.awsstudygroup.com> |
-| 4 | - Mã hóa Tầng Serverless & Tự động hóa bằng Terraform:<br>&emsp;+ Amazon EventBridge rule (`eventbridge.tf`) lọc các mẫu sự kiện an ninh CloudTrail.<br>&emsp;+ Module hàm AWS Lambda (`lambda.tf`) bao gồm đóng gói mã Python và IAM execution role.<br>&emsp;+ Module Amazon SNS topic (`sns.tf`) và đăng ký endpoint email/webhook. | 12/08/2026 | 12/08/2026 | <https://000038.awsstudygroup.com> |
-| 5 | - Mã hóa Tầng NoSQL & Phân tích bằng Terraform:<br>&emsp;+ Bảng Amazon DynamoDB (`dynamodb.tf`) với key `AlertID` và cấu hình TTL.<br>&emsp;+ Module Amazon Athena database & workgroup (`athena.tf`).<br>&emsp;+ Module AWS IAM Access Analyzer (`access_analyzer.tf`). | 13/08/2026 | 13/08/2026 | <https://000102.awsstudygroup.com> |
-| 6 | - Kiểm thử toàn bộ vòng đời triển khai: Chạy `terraform plan` để kiểm tra hơn 20 tài nguyên trong kế hoạch.<br>- Thực thi `terraform apply` khởi tạo toàn bộ hạ tầng đám mây trên region AWS sạch chỉ trong khoảng 3 phút.<br>- Xác minh trạng thái khởi tạo thành công và chạy thử nghiệm `terraform destroy`. | 14/08/2026 | 14/08/2026 | Terraform IaC Validation |
+| 2 | - Tiến hành kiểm thử tích hợp toàn bộ hệ thống:<br>&emsp;+ Chạy toàn bộ 12 kịch bản tấn công (7 kịch bản Endpoint + 5 kịch bản AWS Cloud).<br>&emsp;+ Xác minh thông báo cảnh báo kép: Email SNS gửi tức thì (~2s) và quy tắc SIEM phân tích log chuyên sâu (~5 min).<br>&emsp;+ Xác minh các chỉ số hiển thị chính xác trên giao diện Automation Ops Dashboard. | 10/08/2026 | 10/08/2026 | End-to-End Integration Test Suite |
+| 3 | - Kiểm toán tài chính AWS:<br>&emsp;+ Kiểm tra AWS Cost Explorer và CloudWatch Billing Alarms.<br>&emsp;+ Xác nhận tổng chi phí AWS trong toàn bộ lộ trình 9 tuần đạt mức $0 (không phát sinh phí GuardDuty hay Config). | 11/08/2026 | 11/08/2026 | <https://000007.awsstudygroup.com> |
+| 4 | - Tích hợp sơ đồ kiến trúc chất lượng cao vào bộ tài liệu dự án.<br>- Hoàn thiện chỉnh sửa đề xuất tại Mục 7 (Lộ trình thời gian) và Mục 10 (Kết quả kỳ vọng).<br>- Chuẩn hóa tài liệu tiền đề Workshop Module 5.2. | 12/08/2026 | 12/08/2026 | Documentation Management |
+| 5 | - Viết báo cáo tự đánh giá thực tập (`content/6-Self-evaluation/`).<br>- Tổng hợp tài liệu phản hồi học viên (`content/7-Feedback/`).<br>- Kiểm thử biên dịch cổng tài liệu Hugo (`hugo`) đảm bảo mọi trang hiển thị chính xác. | 13/08/2026 | 13/08/2026 | <https://cloudjourney.awsstudygroup.com/8-fcjworkforce/> |
+| 6 | - Báo cáo bảo vệ dự án kỹ thuật trước đội ngũ mentor FCAJ.<br>- Xuất bản toàn bộ mã nguồn cổng tài liệu SOC.<br>- Hoàn thành xuất sắc chương trình thực tập FCAJ. | 14/08/2026 | 14/08/2026 | <https://cloudjourney.awsstudygroup.com/> |
 
 ### Kết quả đạt được Tuần 9
 
-* Thành thạo kỹ thuật Hạ tầng dưới dạng mã (IaC) sử dụng Terraform và ngôn ngữ HCL.
-* Mã hóa hoàn toàn toàn bộ hạ tầng bảo mật AWS Cloud thành các đoạn mã Terraform dạng module trong thư mục `terraform/`.
-* Thay thế hoàn toàn thao tác cấu hình thủ công trên AWS Console bằng kịch bản IaC tái sử dụng 100%.
-* Chứng minh khả năng tự động hóa triển khai môi trường Cloud chỉ bằng một câu lệnh (`terraform apply`) trong chưa đầy 3 phút.
-* Đảm bảo quản lý an toàn tệp Terraform state, ẩn các tham số nhạy cảm và cách ly khỏi git qua `.gitignore`.
+* Xác minh sự thành công và độ tin cậy của mô hình cảnh báo kép trên toàn bộ 12 kịch bản tấn công an ninh mạng.
+* Chứng minh kỷ luật tài chính nghiêm ngặt: Duy trì tổng chi phí AWS ở mức $0 cho toàn bộ lộ trình 9 tuần của dự án.
+* Xuất bản bộ tài liệu dự án hoàn chỉnh bao gồm 12 hướng dẫn kịch bản tấn công, 4 báo cáo săn đe dọa, 1 báo cáo so sánh GuardDuty, bộ mã nguồn Terraform IaC, toàn bộ mã nguồn Ops Dashboard, và bộ hướng dẫn tiền đề workshop Module 5.2 chuẩn hóa.
+* Nhúng thành công sơ đồ kiến trúc trực quan vào trang cổng tài liệu SOC.
+* Hoàn thành chương trình thực tập First Cloud AI Journey (FCAJ) với kết quả xuất sắc.
