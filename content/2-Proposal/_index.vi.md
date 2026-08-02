@@ -1,6 +1,6 @@
 ---
 title: "Bản đề xuất"
-date: 2026-07-30
+date: 2026-06-15
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
@@ -23,6 +23,7 @@ Hệ thống bao phủ các kịch bản tấn công cloud rủi ro cao được
 Khi các doanh nghiệp dịch chuyển hạ tầng, lưu trữ và định danh lên AWS, các hàng rào bảo mật truyền thống không còn hiệu quả. Tấn công môi trường cloud hiếm khi đòi hỏi các mã khai thác lỗ hổng phức tạp; thay vào đó, kẻ tấn công khai thác access key bị rò rỉ, mật khẩu console bị phished hoặc tài khoản IAM bị phân thừa quyền để thực thi các lệnh API quản trị.
 
 Chuỗi tấn công cloud điển hình diễn ra rất nhanh chóng:
+
 1. **Truy cập Ban đầu (Initial Access)**: Kẻ tấn công có được access key hoặc thông tin xác thực IAM.
 2. **Thăm dò (Reconnaissance)**: Thực thi âm thầm các lệnh liệt kê IAM (`ListUsers`, `ListRoles`, `GetAccountAuthorizationDetails`) để thu thập sơ đồ phân quyền.
 3. **Duy trì Truy cập & Leo thang Quyền (Persistence & Privilege Escalation)**: Tạo tài khoản IAM backdoor (`CreateUser`) và lập tức gán quyền quản trị tối cao (`AttachUserPolicy` với `AdministratorAccess`).
