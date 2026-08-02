@@ -1,14 +1,14 @@
 ---
-title: "Appendix"
+title: "References"
 date: 2026-07-30
 weight: 8
 chapter: false
 pre: " <b> 8. </b> "
 ---
 
-# Appendix
+# References
 
-This appendix contains links to the source code repositories and Infrastructure-as-Code (IaC) templates demonstrating the technical work and implementations completed during the internship program.
+This references contains links to the source code repositories and Infrastructure-as-Code (IaC) templates demonstrating the technical work and implementations completed during the internship program.
 
 ---
 

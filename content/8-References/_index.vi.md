@@ -1,14 +1,14 @@
 ---
-title: "Phụ lục"
+title: "References"
 date: 2026-07-30
 weight: 8
 chapter: false
 pre: " <b> 8. </b> "
 ---
 
-# Phụ lục
+# References
 
-Phụ lục này tổng hợp các liên kết đến các repository mã nguồn và mã hạ tầng dạng mã (Infrastructure as Code - IaC) minh họa cho toàn bộ công việc và sản phẩm kỹ thuật đã thực hiện trong suốt kỳ thực tập.
+References này tổng hợp các liên kết đến các repository mã nguồn và mã hạ tầng dạng mã (Infrastructure as Code - IaC) minh họa cho toàn bộ công việc và sản phẩm kỹ thuật đã thực hiện trong suốt kỳ thực tập.
 
 ---
 
