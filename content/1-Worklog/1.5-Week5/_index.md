@@ -11,7 +11,7 @@ pre: " <b> 1.5. </b> "
 * Master Amazon EventBridge rule creation using custom JSON event patterns matching CloudTrail security events.
 * Learn AWS Lambda serverless execution models, execution roles, and Python Boto3 SDK integration.
 * Learn Amazon SNS messaging (email alerts) and Amazon DynamoDB NoSQL key-value datastore (table `SecurityAlerts` with TTL retention).
-* Architect and validate a complete real-time serverless security pipeline: EventBridge → Lambda → SNS + DynamoDB datastore.
+* Architect and implement Python REST API backend service (`backend/`) using Flask/FastAPI and AWS Boto3 SDK to serve live DynamoDB threat alerts and CloudWatch operational metrics.
 
 ### Tasks Carried Out This Week
 
@@ -21,12 +21,12 @@ pre: " <b> 1.5. </b> "
 | Tue | - Write EventBridge Event Rules filtering critical CloudTrail API events (`RootNoMFA`, IAM policy changes, unauthorized operations).<br>- Provision Amazon DynamoDB table (`SecurityAlerts`) with `AlertID` partition key and 90-day TTL retention. | 07/14/2026 | 07/14/2026 | <https://000060.awsstudygroup.com> |
 | Wed | - Develop Python AWS Lambda function (`soc-alert-enricher`) with IAM execution role.<br>- Implement Boto3 logic to enrich CloudTrail events and push real-time alerts to SNS Topic. | 07/15/2026 | 07/15/2026 | <https://000022.awsstudygroup.com> |
 | Thu | - Extend Lambda function to persist enriched security alert records into DynamoDB (`dynamodb.put_item()`).<br>- Configure CloudWatch Alarms (`SQSQueueDepthAlarm`, `LambdaErrorAlarm`, `FreeTierBudgetAlarm`). | 07/16/2026 | 07/16/2026 | <https://000008.awsstudygroup.com> |
-| Fri | - Wire EventBridge rules to target Lambda function.<br>- Execute Cloud attack simulations to verify dual alerting path: instant SNS email delivery (~2s) and persistent audit logging in DynamoDB. | 07/17/2026 | 07/17/2026 | Serverless Pipeline Testing |
+| Fri | - Design and build Python REST API backend service (`backend/`) with Boto3 SDK modules (`dynamodb_service.py`, `cloudwatch_service.py`, `cost_service.py`).<br>- Implement REST API endpoints (`GET /api/alerts`, `GET /api/metrics`, `GET /api/cost`, `GET /api/health`) with CORS & caching. | 07/17/2026 | 07/17/2026 | Python API Testing |
 
 ### Week 5 Achievements
 
 * Mastered event-driven architecture pattern using Amazon EventBridge, AWS Lambda, and Amazon SNS.
 * Engineered a Python Lambda function that enriches CloudTrail audit events in real time and publishes push notifications.
 * Built a persistent security alert datastore recording enriched threat telemetry directly into Amazon DynamoDB.
-* Configured CloudWatch Alarms ensuring operational health monitoring for Lambda execution and queue depths.
+* Architected and implemented a high-performance Python REST API backend service under `backend/` for real-time metric querying.
 * Validated sub-5-second serverless notification delivery while keeping all resources 100% within AWS Free Tier limits.

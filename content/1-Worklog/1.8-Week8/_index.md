@@ -7,25 +7,26 @@ pre: " <b> 1.8. </b> "
 ---
 ### Week 8 Objectives
 
-* Design and implement Python REST API backend service (`backend/`) using Flask/FastAPI and AWS Boto3 SDK for DynamoDB & CloudWatch.
-* Build interactive frontend interface (`frontend/`) using React, Vite, and modern dark-theme CSS design system.
-* Construct operational dashboard widgets: real-time pipeline status card, Free Tier cost monitor, serverless latency charts, and live security alert data table.
-* Wire React frontend components to backend REST endpoints with automated telemetry polling (every 30 seconds).
+* Conduct post-submission code and architecture review across Python backend, React frontend, and Terraform IaC modules.
+* Refine and tune custom KQL detection rules in Elastic SIEM and SQL threat hunting queries in Amazon Athena to minimize false positive noise.
+* Enhance the Automation Ops Dashboard UI/UX with polished micro-animations, robust error boundaries, dynamic status indicators, and responsive theme refinements.
+* Perform documentation peer review and update scenario walkthroughs based on initial mentor and reviewer feedback.
+* Audit build pipelines to ensure robust long-term reproducibility and zero-cost operational maintenance.
 
 ### Tasks Carried Out This Week
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| Mon | - Design RESTful API architecture for Automation Ops Dashboard.<br>- Initialize Python backend project directory (`backend/`) and setup Boto3 service modules (`dynamodb_service.py`, `cloudwatch_service.py`, `cost_service.py`). | 08/03/2026 | 08/03/2026 | <https://000066.awsstudygroup.com> |
-| Tue | - Construct REST API endpoints (`GET /api/alerts`, `GET /api/metrics/pipeline`, `GET /api/metrics/cost`, `GET /api/health`).<br>- Implement CORS middleware, error handlers, and sub-100ms API response caching. | 08/04/2026 | 08/04/2026 | Python API Testing |
-| Wed | - Initialize React application project using Vite (`npx create-vite@latest frontend --template react`).<br>- Configure modern CSS design system, typography, dark mode palette, and responsive flex/grid layouts. | 08/05/2026 | 08/05/2026 | <https://000079.awsstudygroup.com> |
-| Thu | - Build core UI components: `PipelineStatusWidget`, `CostTrackerWidget`, `LatencyChart` (line chart), `InvocationChart` (bar chart), and `AlertFeedTable` (data table with severity badges). | 08/06/2026 | 08/06/2026 | React Component Architecture |
-| Fri | - Wire React frontend to Python REST API endpoints (`http://localhost:5000/api`).<br>- Add automated 30-second telemetry polling and validate production web build (`npm run build`). | 08/07/2026 | 08/07/2026 | Web App Testing & Build |
+| Mon | - Perform post-submission codebase audit on Python REST API backend (`backend/`) and React frontend (`frontend/`).<br>- Refine error handling decorators, request parameter validation, and edge-case response states. | 08/03/2026 | 08/03/2026 | Code Audit & Quality Review |
+| Tue | - Tune Elastic SIEM KQL detection rules and Athena SQL threat hunting queries using post-submission log telemetry.<br>- Optimize index search filters and reduce rule execution overhead. | 08/04/2026 | 08/04/2026 | Detection Rule Optimization |
+| Wed | - Enhance Automation Ops Dashboard UI/UX: refine dark-mode color contrast, add micro-animation transitions, polish responsive grid layouts, and improve error boundaries. | 08/05/2026 | 08/05/2026 | UI/UX Design System |
+| Thu | - Review and refine project documentation: update scenario walkthroughs, clarify Module 5.2 workshop prerequisites, and polish technical inline comments based on reviewer feedback. | 08/06/2026 | 08/06/2026 | Peer Feedback & Documentation |
+| Fri | - Run continuous integration verification scripts and test full Hugo portal rebuild (`hugo`).<br>- Re-verify $0 AWS billing status post-refinement. | 08/07/2026 | 08/07/2026 | CI & Portfolio Build Check |
 
 ### Week 8 Achievements
 
-* Architected and implemented a high-performance Python REST API backend service under `backend/`.
-* Integrated AWS Boto3 SDK for live metric querying across DynamoDB, CloudWatch, and AWS Billing APIs.
-* Built a state-of-the-art dark-themed web dashboard UI using React and Vite under `frontend/`.
-* Connected React frontend seamlessly to Python backend APIs with dynamic latency charts and automated 30-second telemetry polling.
-* Verified responsive layout and sub-100ms API response times across desktop and mobile viewports.
+* Conducted a comprehensive post-submission code review and hardened exception handling across Python and React modules.
+* Optimized KQL detection rules and Athena SQL queries for improved precision and lower execution latency.
+* Refined Dashboard UI/UX aesthetics with enhanced micro-animations, theme contrast, and responsive layout polish.
+* Incorporated feedback into project documentation, improving technical clarity and workshop prerequisite accessibility.
+* Verified long-term system stability and maintained $0 AWS operational cost throughout post-submission refinements.
