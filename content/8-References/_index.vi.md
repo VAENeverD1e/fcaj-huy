@@ -1,14 +1,14 @@
 ---
-title: "References"
+title: "Tài liệu tham khảo"
 date: 2026-07-30
 weight: 8
 chapter: false
 pre: " <b> 8. </b> "
 ---
 
-# References
+# Tài liệu tham khảo
 
-References này tổng hợp các liên kết đến các repository mã nguồn và mã hạ tầng dạng mã (Infrastructure as Code - IaC) minh họa cho toàn bộ công việc và sản phẩm kỹ thuật đã thực hiện trong suốt kỳ thực tập.
+Tài liệu tham khảo này tổng hợp các liên kết đến các repository mã nguồn và mã hạ tầng dạng mã (Infrastructure as Code - IaC) minh họa cho toàn bộ công việc và sản phẩm kỹ thuật đã thực hiện trong suốt kỳ thực tập.
 
 ---
 
