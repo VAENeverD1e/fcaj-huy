@@ -5,7 +5,7 @@ weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
-**Trong trang này**, bạn sẽ xem tổng quan nhật ký công việc thực tập 9 tuần tại First Cloud AI Journey (FCAJ). Nhật ký ghi lại quá trình tìm hiểu các dịch vụ AWS cốt lõi song song với việc xây dựng hệ thống **Phòng thí nghiệm phát hiện đe dọa lai (Hybrid SOC Detection Lab) & Bảng điều khiển vận hành tự động (Automation Ops Dashboard)**, hoàn thành và nộp toàn bộ sản phẩm vào ngày hạn chót **31/07/2026**, sau đó dành 2 tuần cuối để rà soát, tối ưu kỹ thuật và chuẩn bị báo cáo bảo vệ tổng kết.
+**Trong trang này**, bạn sẽ xem tổng quan nhật ký công việc thực tập 9 tuần tại First Cloud AI Journey (FCAJ). Nhật ký ghi lại quá trình tìm hiểu các dịch vụ AWS cốt lõi song song với việc xây dựng hệ thống **Phòng thí nghiệm phát hiện đe dọa lai (Hybrid SOC Detection Lab) & Bảng điều khiển vận hành tự động (Automation Ops Dashboard)**, hoàn thành và nộp toàn bộ sản phẩm vào ngày hạn chót **31/07/2026**, sau đó dành 2 tuần cuối để rà soát, tối ưu kỹ thuật, tự đánh giá và hoàn thiện hồ sơ thực tập.
 
 **Tuần 1:** [Bắt đầu thực tập & Dịch vụ AWS cơ bản (IAM, Console, CLI, EC2)](1.1-week1/)
 
@@ -23,4 +23,4 @@ pre: " <b> 1. </b> "
 
 **Tuần 8:** [Rà soát dự án sau khi nộp, Tối ưu kỹ thuật & Refine giao diện UI/UX](1.8-week8/)
 
-**Tuần 9:** [Đánh giá tổng kết, Hoàn thiện bài thuyết trình & Chuẩn bị bảo vệ báo cáo](1.9-week9/)
+**Tuần 9:** [Hoàn thiện Hồ sơ Năng lực, Tự đánh giá & Tổng kết Thực tập](1.9-week9/)

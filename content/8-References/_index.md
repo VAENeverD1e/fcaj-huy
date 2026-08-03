@@ -8,7 +8,7 @@ pre: " <b> 8. </b> "
 
 # References
 
-This references contains links to the source code repositories and Infrastructure-as-Code (IaC) templates demonstrating the technical work and implementations completed during the internship program.
+This reference contains links to the source code repositories and Infrastructure-as-Code (IaC) templates demonstrating the technical work and implementations completed during the internship program.
 
 ---
 

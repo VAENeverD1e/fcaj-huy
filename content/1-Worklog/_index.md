@@ -5,7 +5,7 @@ weight: 1
 chapter: false
 pre: " <b> 1. </b> "
 ---
-This section tracks my weekly progress throughout the 9-week internship at the **First Cloud AI Journey (FCAJ)** program. It is an honest record of what I learned, what I built, and the challenges I ran into along the way — from getting familiar with AWS basics in the early weeks to building a full SOC detection lab and a real-time operations dashboard by the official submission deadline on **31/07/2026**, followed by post-submission review, technical refinement, and final presentation defense.
+This section tracks my weekly progress throughout the 9-week internship at the **First Cloud AI Journey (FCAJ)** program. It is an honest record of what I learned, what I built, and the challenges I ran into along the way — from getting familiar with AWS basics in the early weeks to building a full SOC detection lab and a real-time operations dashboard by the official submission deadline on **31/07/2026**, followed by post-submission review, technical refinement, and final portfolio consolidation.
 
 **Week 1:** [Internship Onboarding & AWS Core Fundamentals (IAM, Console, CLI, EC2)](1.1-week1/)
 
@@ -23,4 +23,4 @@ This section tracks my weekly progress throughout the 9-week internship at the *
 
 **Week 8:** [Post-Submission Project Review, Technical Refinement & UI/UX Optimization](1.8-week8/)
 
-**Week 9:** [Final Evaluation Review, Presentation Polish & Portfolio Finalization](1.9-week9/)
+**Week 9:** [Portfolio Finalization, Self-Evaluation & Internship Program Completion](1.9-week9/)
